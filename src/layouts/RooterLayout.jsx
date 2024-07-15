@@ -4,8 +4,8 @@ import { Outlet } from "react-router-dom";
 
 function RooterLayout() {
   return (
-    <div className="">
-      <main className="align-element ">
+    <div className="flex flex-col h-screen py-6">
+      <main className="align-element flex-grow">
         <Outlet />
       </main>
       <Navbar />

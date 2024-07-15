@@ -15,7 +15,7 @@ function Navbar() {
     <nav className="bg-cyan-500 rounded-xl py-2 px-4">
       <div className="flex container  items-center justify-between">
         <Link
-          to={`/${id}`}
+          to={`/`}
           className="text-3xl  flex flex-col text-white hover:text-red-600"
         >
           <FaGem className="mx-auto" />
