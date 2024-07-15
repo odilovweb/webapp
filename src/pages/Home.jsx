@@ -14,10 +14,9 @@ import {
 } from "firebase/firestore";
 import { db } from "../api/firebase-config";
 import solana from ".././assets/solana.svg";
-import { telegramBaseClient } from "telegram/client";
 
 function Home(prev) {
-  const [idus, setUserInfo] = null;
+  const [idus, setUserInfo] = useState(null);
   const [records, setRecords] = useState([]);
   const [canGet, setCanGet] = useState(false);
   const [balance, setBalance] = useState(0);
@@ -34,12 +33,9 @@ function Home(prev) {
     const telegram = window.Telegram.WebApp;
     console.log(telegram);
     telegram.ready();
-
     if (telegram.initDataUnsafe) {
       const user = telegram.initDataUnsafe.user;
-      setUserInfo({
-        id: user.id,
-      });
+      setUserInfo(user.id);
     }
   }, []);
 
@@ -71,7 +67,7 @@ function Home(prev) {
             </button>
           </div>
           <div className="flex-1 flex flex-col">
-            <p>Toncoin Balance</p>
+            <p>{idus}</p>
             <p className="font-bold text-lg">{balance} TON</p>
           </div>
           <div className="flex-none">
