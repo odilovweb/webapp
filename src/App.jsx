@@ -12,26 +12,12 @@ import RooterLayout from "./layouts/RooterLayout";
 import TapMine from "./pages/TapMine";
 
 function App() {
-  const [idus, setUserInfo] = null;
-  useEffect(() => {
-    const telegram = window.Telegram.WebApp;
-    console.log(telegram);
-    telegram.ready();
-
-    if (telegram.initDataUnsafe) {
-      const user = telegram.initDataUnsafe.user;
-      setUserInfo({
-        id: user.id,
-      });
-    }
-  }, []);
-
   const [count, setCount] = useState(0);
   const routes = createBrowserRouter(
     createRoutesFromElements(
       <Route>
         <Route path="/" element={<RooterLayout />}>
-          <Route index element={<Home />} idus={idus} />
+          <Route index element={<Home />} />
         </Route>
         <Route path="/mining" element={<TapMine />} />
       </Route>
