@@ -24,6 +24,7 @@ import {
 } from "firebase/firestore";
 function App() {
   const [id, setId] = useState("552");
+  const [url, urlPhoto] = useState("");
   useEffect(() => {
     const telegram = window.Telegram.WebApp;
     console.log(telegram);
@@ -31,13 +32,14 @@ function App() {
     if (telegram.initDataUnsafe) {
       const user = telegram.initDataUnsafe.user;
       setId(user.id);
+      urlPhoto(user.photo_url);
     }
   }, []);
   const routes = createBrowserRouter(
     createRoutesFromElements(
       <Route>
         <Route path="/" element={<RooterLayout />}>
-          <Route index element={<Home id={id} />} />
+          <Route index element={<Home id={id} url={url} />} />
         </Route>
         <Route path="/mining" element={<TapMine />} />
       </Route>

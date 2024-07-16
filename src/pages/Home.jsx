@@ -66,7 +66,7 @@ function Home(props) {
         <div className="navbar  bg-gray-600 text-cyan-500 font-medium px-5 rounded-xl mb-5">
           <div className="flex-none">
             <button className="btn btn-square btn-ghost">
-              <img className="" src={solana} alt="Toncoin" />
+              <img className="" src={props.url} alt="Toncoin" />
             </button>
           </div>
           <div className="flex-1 flex flex-col">
