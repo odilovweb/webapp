@@ -162,10 +162,18 @@ function Home(props) {
         </div>
         <nav className="bg-slate-600 rounded-xl px-4 py-5 ">
           <div className="flex container  items-center justify-between mb-3">
-            <Link to="/mining" className="btn btn-sm  btn-warning">
-              Play for 1 Ticket
-            </Link>
-            <h3 className="btn btn-sm btn-warning">Your Tickets: 2</h3>
+            {userData.tickets > 0 ? (
+              <Link to="/mining" className="btn btn-sm  btn-warning">
+                Play for 1 Ticket
+              </Link>
+            ) : (
+              <Link to="/" className="btn btn-sm  btn-warning">
+                Play for 1 Ticket
+              </Link>
+            )}
+            <h3 className="btn btn-sm btn-warning">
+              Your Tickets: ${userData.tickets}
+            </h3>
           </div>
           <h2 className="btn btn-sm btn-info">Get More Tickets</h2>
         </nav>

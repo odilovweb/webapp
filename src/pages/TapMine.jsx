@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import solana from ".././assets/onedrop.png";
 import { Link } from "react-router-dom";
+import tapsound from ".././assets/tapsound.mp3";
 
 function TapMine() {
   const [point, setPoint] = useState(0);
@@ -20,6 +21,10 @@ function TapMine() {
       return () => clearInterval(interval);
     }
   }, [active]);
+  const tapSoundFunc = () => {
+    const audio = new Audio(clickSound);
+    audio.play();
+  };
 
   return (
     <div className="h-screen py-6 flex flex-col gap-48">
@@ -35,6 +40,7 @@ function TapMine() {
             className="w-72 animate-spin mx-auto active:w-60 transition-all active:transition-all"
             src={solana}
             onClick={() => {
+              tapSoundFunc();
               setPoint((prev) => prev + 1);
             }}
           />
