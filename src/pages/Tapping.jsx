@@ -34,7 +34,7 @@ function Tapping() {
           <span>{active && `00 : ${time}`}</span>
         </h1>
       </div>
-      {active ? (
+      {
         <div className="h-44 max-w-full">
           <img
             className="w-72 animate-spin mx-auto active:w-60 transition-all active:transition-all rounded-full"
@@ -45,29 +45,30 @@ function Tapping() {
             }}
           />
         </div>
-      ) : (
-        <nav className="bg-slate-600 rounded-xl px-4 py-5 ">
-          <div className="flex container  items-center justify-between mb-3">
-            <btn
-              className="btn btn-sm  btn-warning"
-              onClick={() => {
-                isActive(true);
-                setTime(20);
-                setPoint(0);
-                setTimeout(() => {
-                  isActive(false);
-                }, 20000);
-              }}
-            >
-              Play more for 1 Ticket
-            </btn>
-            <Link to="/" className="btn btn-sm btn-warning">
-              Back Home
-            </Link>
-          </div>
-          <h2 className="btn btn-sm btn-info">Get More Tickets</h2>
-        </nav>
-      )}
+        //   ) : (
+        //     <nav className="bg-slate-600 rounded-xl px-4 py-5 ">
+        //       <div className="flex container  items-center justify-between mb-3">
+        //         <btn
+        //           className="btn btn-sm  btn-warning"
+        //         //   onClick={() => {
+        //         //     isActive(true);
+        //         //     setTime(20);
+        //         //     setPoint(0);
+        //         //     setTimeout(() => {
+        //         //       isActive(false);
+        //         //     }, 20000);
+        //         //   }}
+        //         >
+        //           Play more for 1 Ticket
+        //         </btn>
+        //         <Link to="/" className="btn btn-sm btn-warning">
+        //           Back Home
+        //         </Link>
+        //       </div>
+        //       <h2 className="btn btn-sm btn-info">Get More Tickets</h2>
+        //     </nav>
+        //   )}
+      }{" "}
     </div>
   );
 }
