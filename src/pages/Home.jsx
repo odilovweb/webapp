@@ -68,8 +68,8 @@ function Home(props) {
   useEffect(() => {
     if (telegram.initDataUnsafe) {
       const user = telegram.initDataUnsafe.user;
-      getUserData(user.id);
       setTGId(user.id);
+      getUserData(user.id);
       setTgName(user.first_name);
     }
     getUserData(`${tgId}`);
