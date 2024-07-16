@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import musictap from "../../public/tapsound.mp3";
 
 function Tapping() {
-  const [point, setPoint] = useState(0);
-  const [active, isActive] = useState(true);
-  const [time, setTime] = useState(20);
+  //   const [point, setPoint] = useState(0);
+  //   const [active, isActive] = useState(true);
+  //   const [time, setTime] = useState(20);
   //   useEffect(() => {
   //     setTimeout(() => {
   //       isActive(false);
@@ -36,14 +36,14 @@ function Tapping() {
       </div>
       {
         <div className="h-44 max-w-full">
-          <img
+          {/* <img
             className="w-72 animate-spin mx-auto active:w-60 transition-all active:transition-all rounded-full"
             src={solana && solana}
             onClick={() => {
               tapSoundFunc();
               setPoint((prev) => prev + 1);
             }}
-          />
+          /> */}
         </div>
         //   ) : (
         //     <nav className="bg-slate-600 rounded-xl px-4 py-5 ">
