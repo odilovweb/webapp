@@ -22,27 +22,30 @@ function Home(props) {
   const [userData, setUserData] = useState(null);
   const [tgId, setTGId] = useState(null);
   const [tgName, setTgName] = useState(null);
-  const telegram = window.Telegram.WebApp;
+  // const telegram = window.Telegram.WebApp;
 
-  telegram.ready();
+  // telegram.ready();
 
   const newUserData = async () => {
+    const collectionRef = collection(db, "users");
+    const newUser = {
+      balance: 0,
+      tonBalance: 0,
+      inviter: null,
+      combos: 0,
+      daily: null,
+      friends: 0,
+      topFriends: [],
+      tasks: 0,
+      done: [],
+      tickets: 0,
+    };
     try {
-      await db.collection("users").doc(tgId).set({
-        balance: 0,
-        tonBalance: 0,
-        inviter: null,
-        combos: 0,
-        daily: null,
-        friends: 0,
-        topFriends: [],
-        tasks: 0,
-        done: [],
-        tickets: 0,
-      });
-      console.log("User added successfully!");
-    } catch (error) {
-      console.error("Error adding user: ", error);
+      const userRef = doc(collectionRef, `${tgId}`);
+      await setDoc(userRef, newUser);
+      console.log("it has done");
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -69,6 +72,7 @@ function Home(props) {
       setTGId(user.id);
       setTgName(user.first_name);
     }
+    getUserData(`${tgId}`);
 
     console.log(userData);
   }, []);

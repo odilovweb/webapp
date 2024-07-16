@@ -26,14 +26,14 @@ function App() {
   const [id, setId] = useState("841886966");
   const [url, urlPhoto] = useState("");
   useEffect(() => {
-    const telegram = window.Telegram.WebApp;
-    console.log(telegram);
-    telegram.ready();
-    if (telegram.initDataUnsafe) {
-      const user = telegram.initDataUnsafe.user;
-      setId(user.id);
-      urlPhoto(user.photo_url);
-    }
+    // const telegram = window.Telegram.WebApp;
+    // console.log(telegram);
+    // telegram.ready();
+    // if (telegram.initDataUnsafe) {
+    //   const user = telegram.initDataUnsafe.user;
+    //   setId(user.id);
+    //   urlPhoto(user.photo_url);
+    // }
   }, []);
   const routes = createBrowserRouter(
     createRoutesFromElements(
