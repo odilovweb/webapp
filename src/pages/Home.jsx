@@ -69,7 +69,7 @@ function Home(props) {
     if (telegram.initDataUnsafe) {
       const user = telegram.initDataUnsafe.user;
       setTGId(user.id);
-      getUserData(user.id);
+      tgId && getUserData(user.id);
       setTgName(user.first_name);
     }
     getUserData(`${tgId}`);
