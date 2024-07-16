@@ -40,8 +40,8 @@ function App() {
       <Route>
         <Route path="/" element={<RooterLayout />}>
           <Route index element={<Home id={id} url={url} />} />
-          <Route path="/mining" element={<TapMine />} />
-        </Route>
+        </Route>{" "}
+        <Route path="/mining" element={<TapMine />} />
       </Route>
     )
   );
