@@ -136,7 +136,7 @@ function Home(props) {
             className="w-56 h-56 mx-auto rounded-full"
           />
           <h3 className="font-bold mx-auto max-w-12 w-full">
-            {tgName.slice(0, 10)}
+            {userData && tgName.slice(0, 10)}
           </h3>
         </div>
         <nav className="bg-slate-600 rounded-xl px-4 py-5 ">
