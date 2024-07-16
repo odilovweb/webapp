@@ -7,20 +7,20 @@ function Tapping() {
   const [point, setPoint] = useState(0);
   const [active, isActive] = useState(true);
   const [time, setTime] = useState(20);
-  useEffect(() => {
-    setTimeout(() => {
-      isActive(false);
-    }, 20000);
-  }, []);
-  useEffect(() => {
-    if (active) {
-      const interval = setInterval(() => {
-        setTime((prevCounter) => prevCounter - 1);
-      }, 1000);
+  //   useEffect(() => {
+  //     setTimeout(() => {
+  //       isActive(false);
+  //     }, 20000);
+  //   }, []);
+  //   useEffect(() => {
+  //     if (active) {
+  //       const interval = setInterval(() => {
+  //         setTime((prevCounter) => prevCounter - 1);
+  //       }, 1000);
 
-      return () => clearInterval(interval);
-    }
-  }, [active]);
+  //       return () => clearInterval(interval);
+  //     }
+  //   }, [active]);
   const tapSoundFunc = () => {
     const tapSound = new Audio(musictap);
     tapSound.play();
