@@ -46,7 +46,7 @@ function Home(props) {
       const user = telegram.initDataUnsafe.user;
       getUserData(user.id);
       setTGId(user.id);
-      setTgPhoto(user.photoUrl);
+      setTgPhoto(user);
     }
 
     console.log(userData);
