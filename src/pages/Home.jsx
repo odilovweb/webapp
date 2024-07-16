@@ -13,6 +13,7 @@ import {
 } from "firebase/firestore";
 
 import solana from ".././assets/solana.svg";
+import onedrop from ".././assets/onedrop.png";
 import { db } from "../api/firebase-config";
 
 function Home(props) {
@@ -78,21 +79,17 @@ function Home(props) {
         <div className="navbar  bg-gray-600 text-cyan-500 font-medium px-5 rounded-xl mb-5">
           <div className="flex-none">
             <button className="btn btn-square btn-ghost">
-              <img
-                className="rounded-full"
-                src="../assets/onedrop.png"
-                alt="Onedrop"
-              />
+              <img className="rounded-full" src={onedrop} alt="Onedrop" />
             </button>
           </div>
           <div className="flex-1 flex flex-col">
-            <p>OneDrop Balance</p>
+            <p>ONDP Balance</p>
             <p className="font-bold text-lg">
               {userData && userData.balance} ONDP
             </p>
           </div>
           <div className="flex-1 flex flex-col">
-            <p>TONCOIN Balance</p>
+            <p>Ton</p>
             <p className="font-bold text-lg">
               {userData && userData.tonBalance} TON
             </p>
