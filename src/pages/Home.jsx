@@ -58,7 +58,7 @@ function Home(props) {
         setUserData(docSnap.data());
         console.log(docSnap.data());
       } else {
-        tgId && newUserData();
+        console.log("Eror");
       }
     } catch (error) {
       console.error("Error fetching user data: ", error);
@@ -118,7 +118,7 @@ function Home(props) {
           </div>
           <div className="flex-none">
             <button className="btn btn-square btn-ghost bg-white hover:bg-cyan-500 hover:text-white">
-              <btn
+              <button
                 className="font-bold"
                 onClick={() => {
                   setActive(true);
@@ -128,7 +128,7 @@ function Home(props) {
                 }}
               >
                 Send
-              </btn>
+              </button>
             </button>
           </div>
         </div>
