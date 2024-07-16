@@ -40,7 +40,7 @@ function App() {
     createRoutesFromElements(
       <Route>
         <Route path="/" element={<RooterLayout />}>
-          <Route index element={<Tapping />} />
+          <Route index element={<Home />} />
         </Route>{" "}
         <Route path="/mining" element={<TapMine />} />
         <Route path="/tapping" element={<Tapping />} />
