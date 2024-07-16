@@ -19,10 +19,20 @@ function Home(props) {
   console.log(props.id);
   const [balance, setBalance] = useState(0);
   const [userData, setUserData] = useState(null);
+  const [tgId, setTGId] = useState(null);
+  const [tgPhoto, setTgPhoto] = useState(null);
 
   const getUserData = async (userId) => {
+    const telegram = window.Telegram.WebApp;
+    console.log(telegram);
+    telegram.ready();
+    if (telegram.initDataUnsafe) {
+      const user = telegram.initDataUnsafe.user;
+      setTGId(user.id);
+      setTgPhoto(user.photo_url);
+    }
     try {
-      const docRef = doc(db, "users", userId);
+      const docRef = doc(db, "users", tgId);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
@@ -36,7 +46,7 @@ function Home(props) {
     }
   };
   useEffect(() => {
-    getUserData(props.id);
+    getUserData();
     console.log(userData);
   }, [props.id]);
 
@@ -66,7 +76,7 @@ function Home(props) {
         <div className="navbar  bg-gray-600 text-cyan-500 font-medium px-5 rounded-xl mb-5">
           <div className="flex-none">
             <button className="btn btn-square btn-ghost">
-              <img className="" src={props.url} alt="Toncoin" />
+              <img className="" src={tgPhoto} alt="Toncoin" />
             </button>
           </div>
           <div className="flex-1 flex flex-col">
