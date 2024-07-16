@@ -83,13 +83,11 @@ function Home(props) {
             </button>
           </div>
           <div className="flex-1 flex flex-col">
-            <p>ONDP Balance</p>
             <p className="font-bold text-lg">
               {userData && userData.balance} ONDP
             </p>
           </div>
           <div className="flex-1 flex flex-col">
-            <p>Ton</p>
             <p className="font-bold text-lg">
               {userData && userData.tonBalance} TON
             </p>
