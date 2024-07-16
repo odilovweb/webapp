@@ -88,7 +88,7 @@ function Home(props) {
             </p>
           </div>
           <div className="flex-1 flex flex-col">
-            <p>Toncoin Balance</p>
+            <p>{tgId}</p>
             <p className="font-bold text-lg">
               {userData && userData.tonBalance} TON
             </p>
