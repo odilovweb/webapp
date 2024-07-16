@@ -78,17 +78,21 @@ function Home(props) {
         <div className="navbar  bg-gray-600 text-cyan-500 font-medium px-5 rounded-xl mb-5">
           <div className="flex-none">
             <button className="btn btn-square btn-ghost">
-              <img className="" src={tgPhoto} alt="Toncoin" />
+              <img
+                className="rounded-full"
+                src="../assets/onedrop.png"
+                alt="Onedrop"
+              />
             </button>
           </div>
           <div className="flex-1 flex flex-col">
-            <p>ONDP Balance</p>
+            <p>OneDrop Balance</p>
             <p className="font-bold text-lg">
-              {userData && userData.balance} TON
+              {userData && userData.balance} ONDP
             </p>
           </div>
           <div className="flex-1 flex flex-col">
-            <p>{tgPhoto}</p>
+            <p>TONCOIN Balance</p>
             <p className="font-bold text-lg">
               {userData && userData.tonBalance} TON
             </p>
