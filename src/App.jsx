@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./App.css";
 import {
@@ -10,14 +10,34 @@ import {
 import Home from "./pages/Home";
 import RooterLayout from "./layouts/RooterLayout";
 import TapMine from "./pages/TapMine";
-
+import { db } from "./api/firebase-config";
+import { ref, set, onValue, get, child } from "firebase/database";
+import { data } from "autoprefixer";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  doc,
+  updateDoc,
+  setDoc,
+  getDoc,
+} from "firebase/firestore";
 function App() {
-  const [count, setCount] = useState(0);
+  const [id, setId] = useState("552");
+  useEffect(() => {
+    const telegram = window.Telegram.WebApp;
+    console.log(telegram);
+    telegram.ready();
+    if (telegram.initDataUnsafe) {
+      const user = telegram.initDataUnsafe.user;
+      setId(user.id);
+    }
+  }, []);
   const routes = createBrowserRouter(
     createRoutesFromElements(
       <Route>
         <Route path="/" element={<RooterLayout />}>
-          <Route index element={<Home />} />
+          <Route index element={<Home id={id} />} />
         </Route>
         <Route path="/mining" element={<TapMine />} />
       </Route>

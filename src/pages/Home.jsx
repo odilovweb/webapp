@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import solanaLogo from "../../public/images/solana.svg";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import axios from "axios";
-import { fetchRecords, updateBalance } from "../api/airtable";
 import {
   collection,
   getDocs,
@@ -12,32 +11,36 @@ import {
   setDoc,
   getDoc,
 } from "firebase/firestore";
-import { db } from "../api/firebase-config";
+
 import solana from ".././assets/solana.svg";
+import { db } from "../api/firebase-config";
 
-function Home(prev) {
-  const [idus, setUserInfo] = useState(null);
-  const [records, setRecords] = useState([]);
-  const [canGet, setCanGet] = useState(false);
+function Home(props) {
+  console.log(props.id);
   const [balance, setBalance] = useState(0);
-  const [seconbalance, setSecondBalance] = useState(0);
-  const [miningBalance, setMiningBalance] = useState(0.001);
-  const [users, setUsers] = useState([]);
-  const [difference, setDifference] = useState(null);
-  const [amount, setAmount] = useState(0);
-  const [address, setAddres] = useState("addres");
-  const { id } = useParams();
-  console.log(prev);
+  const [userData, setUserData] = useState(null);
 
-  useEffect(() => {
-    const telegram = window.Telegram.WebApp;
-    console.log(telegram);
-    telegram.ready();
-    if (telegram.initDataUnsafe) {
-      const user = telegram.initDataUnsafe.user;
-      setUserInfo(user.id);
+  const getUserData = async (userId) => {
+    try {
+      const docRef = doc(db, "users", userId);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        setUserData(docSnap.data());
+        console.log(docSnap.data());
+      } else {
+        console.log("No such document!");
+      }
+    } catch (error) {
+      console.error("Error fetching user data: ", error);
     }
-  }, []);
+  };
+  useEffect(() => {
+    getUserData(props.id);
+    console.log(userData);
+  }, [props.id]);
+
+  const { id } = useParams();
 
   const [isActive, setActive] = useState(false);
   const [isSending, setIsSending] = useState(false);
@@ -67,8 +70,16 @@ function Home(prev) {
             </button>
           </div>
           <div className="flex-1 flex flex-col">
-            <p>{idus}</p>
-            <p className="font-bold text-lg">{balance} TON</p>
+            <p>ONDP Balance</p>
+            <p className="font-bold text-lg">
+              {userData && userData.balance} TON
+            </p>
+          </div>
+          <div className="flex-1 flex flex-col">
+            <p>Toncoin Balance</p>
+            <p className="font-bold text-lg">
+              {userData && userData.tonBalance} TON
+            </p>
           </div>
           <div className="flex-none">
             <button className="btn btn-square btn-ghost bg-white hover:bg-cyan-500 hover:text-white">
@@ -86,44 +97,16 @@ function Home(prev) {
             </button>
           </div>
         </div>
-        <div className="navbar bg-gray-600 text-cyan-500 font-medium px-5 rounded-xl ">
-          <div className="flex-none">
-            <button className="btn btn-square btn-ghost">
-              <img className="" src={solana} alt="Toncoop" />
-            </button>
-          </div>
-          <div className="flex-1 flex flex-col">
-            <p>Toncoop Balance</p>
-            <p className="font-bold text-xs">
-              {seconbalance} = {seconbalance * 0.001} $
-            </p>
-          </div>
-          <div className="flex-none">
-            <button className="btn btn-square btn-ghost bg-white hover:bg-cyan-500 hover:text-white">
-              <p
-                className="font-bold"
-                onClick={() => {
-                  setActive(true);
-                  setTimeout(() => {
-                    setActive(false);
-                  }, 2000);
-                }}
-              >
-                Send
-              </p>
-            </button>
-          </div>
-        </div>
       </div>
       <div className="my-6 flex justify-center gap-7 ">
         <Link
-          to={`/${id}`}
-          className="btn btn-xs bg-slate-600 text-white sm:btn-sm md:btn-md lg:btn-lg hover:bg-cyan-500"
+          to={`/`}
+          className="btn btn-xs bg-slate-600 text-white sm:btn-sm md:btn-md lg:btn-lg active:bg-cyan-500"
         >
-          Toncoin Mining
+          ONDP Mining
         </Link>
         <button
-          className="btn btn-xs bg-slate-600 text-white sm:btn-sm md:btn-md lg:btn-lg hover:bg-cyan-500"
+          className="btn btn-xs bg-slate-600 text-white sm:btn-sm md:btn-md lg:btn-lg active:bg-cyan-500"
           onClick={() => {
             setActive(true);
             setTimeout(() => {

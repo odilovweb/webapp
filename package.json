@@ -14,7 +14,7 @@
     "@reduxjs/toolkit": "^2.2.6",
     "axios": "^1.7.2",
     "buffer": "^6.0.3",
-    "firebase": "^10.12.2",
+    "firebase": "^10.12.3",
     "object-inspect": "^1.13.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
