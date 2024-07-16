@@ -23,7 +23,7 @@ import {
   getDoc,
 } from "firebase/firestore";
 function App() {
-  const [id, setId] = useState("552");
+  const [id, setId] = useState("841886966");
   const [url, urlPhoto] = useState("");
   useEffect(() => {
     const telegram = window.Telegram.WebApp;
