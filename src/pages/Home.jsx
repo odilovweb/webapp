@@ -21,16 +21,11 @@ function Home(props) {
   const [userData, setUserData] = useState(null);
   const [tgId, setTGId] = useState(null);
   const [tgPhoto, setTgPhoto] = useState(null);
+  const telegram = window.Telegram.WebApp;
 
-  const getUserData = async (userId) => {
-    const telegram = window.Telegram.WebApp;
-    console.log(telegram);
-    telegram.ready();
-    if (telegram.initDataUnsafe) {
-      const user = telegram.initDataUnsafe.user;
-      setTGId(user.id);
-      setTgPhoto(user.photo_url);
-    }
+  telegram.ready();
+
+  const getUserData = async () => {
     try {
       const docRef = doc(db, "users", tgId);
       const docSnap = await getDoc(docRef);
@@ -46,6 +41,11 @@ function Home(props) {
     }
   };
   useEffect(() => {
+    if (telegram.initDataUnsafe) {
+      const user = telegram.initDataUnsafe.user;
+      setTGId(user.id);
+      setTgPhoto(user.photo_url);
+    }
     getUserData();
     console.log(userData);
   }, [props.id]);
