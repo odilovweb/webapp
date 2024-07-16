@@ -22,6 +22,7 @@ import {
   setDoc,
   getDoc,
 } from "firebase/firestore";
+import Tapping from "./pages/Tapping";
 function App() {
   const [id, setId] = useState("841886966");
   const [url, urlPhoto] = useState("");
@@ -42,6 +43,7 @@ function App() {
           <Route index element={<Home id={id} url={url} />} />
         </Route>{" "}
         <Route path="/mining" element={<TapMine />} />
+        <Route path="/tapping" element={<Tapping />} />
       </Route>
     )
   );
