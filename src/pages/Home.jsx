@@ -27,7 +27,7 @@ function Home(props) {
 
   const getUserData = async (userId) => {
     try {
-      const docRef = doc(db, "users", userId);
+      const docRef = doc(db, "users", `${userId}`);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
@@ -88,7 +88,7 @@ function Home(props) {
             </p>
           </div>
           <div className="flex-1 flex flex-col">
-            <p>{tgId}</p>
+            <p>{typeof tgId}</p>
             <p className="font-bold text-lg">
               {userData && userData.tonBalance} TON
             </p>
