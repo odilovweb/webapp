@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import solanaLogo from "../../public/images/solana.svg";
-import { Link, useParams, useSearchParams } from "react-router-dom";
-import axios from "axios";
+import { Link, useParams } from "react-router-dom";
 import {
   collection,
   getDocs,
@@ -49,21 +47,21 @@ function Home(props) {
     }
   };
 
-  const getUserData = async (userId) => {
-    try {
-      const docRef = doc(db, "users", `${userId}`);
-      const docSnap = await getDoc(docRef);
+  // const getUserData = async (userId) => {
+  //   try {
+  //     const docRef = doc(db, "users", `${userId}`);
+  //     const docSnap = await getDoc(docRef);
 
-      if (docSnap.exists()) {
-        setUserData(docSnap.data());
-        console.log(docSnap.data());
-      } else {
-        console.log("Eror");
-      }
-    } catch (error) {
-      console.error("Error fetching user data: ", error);
-    }
-  };
+  //     if (docSnap.exists()) {
+  //       setUserData(docSnap.data());
+  //       console.log(docSnap.data());
+  //     } else {
+  //       console.log("Eror");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching user data: ", error);
+  //   }
+  // };
 
   useEffect(async () => {
     if (telegram.initDataUnsafe) {
@@ -76,8 +74,6 @@ function Home(props) {
 
     console.log(userData);
   }, []);
-
-  const { id } = useParams();
 
   const [isActive, setActive] = useState(false);
   const [isSending, setIsSending] = useState(false);
