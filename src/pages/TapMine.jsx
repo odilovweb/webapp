@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import solana from "../assets/onedrop.png";
 import { Link } from "react-router-dom";
-import tapsound from "../assets/tapsound.mp3";
+import musictap from "../../public/tapsound.mp3";
 
 function TapMine() {
   const [point, setPoint] = useState(0);
@@ -22,8 +22,8 @@ function TapMine() {
     }
   }, [active]);
   const tapSoundFunc = () => {
-    const audio = new Audio(tapsound);
-    audio.play();
+    const tapSound = new Audio(musictap);
+    tapSound.play();
   };
 
   return (
