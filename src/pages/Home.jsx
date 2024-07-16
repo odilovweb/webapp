@@ -135,10 +135,10 @@ function Home(props) {
             alt="Image"
             className="w-56 h-56 mx-auto rounded-full"
           />
-          <h3 className="font-bold mx-auto max-w-12 w-full">
-            {userData && tgName.slice(0, 10)}
-          </h3>
-        </div>
+        </div>{" "}
+        <h3 className="font-bold mx-auto max-w-12 w-full">
+          {userData && tgName.slice(20)}
+        </h3>
         <nav className="bg-slate-600 rounded-xl px-4 py-5 ">
           <div className="flex container  items-center justify-between mb-3">
             <Link to="mining" className="btn btn-sm  btn-warning">
