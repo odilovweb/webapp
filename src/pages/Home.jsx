@@ -172,7 +172,7 @@ function Home(props) {
               </Link>
             )}
             <h3 className="btn btn-sm btn-warning">
-              Your Tickets: ${userData.tickets}
+              Your Tickets: ${userData && userData.tickets}
             </h3>
           </div>
           <h2 className="btn btn-sm btn-info">Get More Tickets</h2>
