@@ -128,17 +128,14 @@ function Home(props) {
           TonCoop Mining
         </button>
       </div>
-      <div className="flex flex-col justify-between content-between gap-24">
+      <div className="flex flex-col justify-between content-between ">
         <div className="w-full my-4">
           <img
             src={solana}
             alt="Image"
             className="w-56 h-56 mx-auto rounded-full"
           />
-        </div>{" "}
-        <h3 className="font-bold mx-auto max-w-12 w-full">
-          {userData && tgName.slice(20)}
-        </h3>
+        </div>
         <nav className="bg-slate-600 rounded-xl px-4 py-5 ">
           <div className="flex container  items-center justify-between mb-3">
             <Link to="mining" className="btn btn-sm  btn-warning">

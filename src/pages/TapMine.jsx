@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import solana from ".././assets/solana.svg";
+import solana from ".././assets/onedrop.png";
 import { Link } from "react-router-dom";
 
 function TapMine() {
@@ -22,7 +22,7 @@ function TapMine() {
   }, [active]);
 
   return (
-    <div className="h-screen py-6 flex flex-col gap-72">
+    <div className="h-screen py-6 flex flex-col gap-48">
       <div>
         <h1 className="font-bold text-5xl text-cyan-600 flex flex-col">
           <span>Your Points: {point} </span>
