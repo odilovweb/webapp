@@ -12,7 +12,7 @@ import {
   getDoc,
 } from "firebase/firestore";
 
-import solana from ".././assets/solana.svg";
+import solana from ".././assets/onedrop.png";
 import onedrop from ".././assets/onedrop.png";
 import { db } from "../api/firebase-config";
 
@@ -21,7 +21,7 @@ function Home(props) {
   const [balance, setBalance] = useState(0);
   const [userData, setUserData] = useState(null);
   const [tgId, setTGId] = useState(null);
-  const [tgPhoto, setTgPhoto] = useState(null);
+  const [tgName, setTgName] = useState(null);
   const telegram = window.Telegram.WebApp;
 
   telegram.ready();
@@ -47,7 +47,7 @@ function Home(props) {
       const user = telegram.initDataUnsafe.user;
       getUserData(user.id);
       setTGId(user.id);
-      setTgPhoto(user.photo_url);
+      setTgName(user.first_name);
     }
 
     console.log(userData);
@@ -133,6 +133,7 @@ function Home(props) {
       <div className="flex flex-col justify-between content-between gap-24">
         <div className="w-full my-4">
           <img src={solana} alt="Image" className="w-56 h-56 mx-auto" />
+          <h3 className="font-bold mx-auto max-w-12">{tgName}</h3>
         </div>
         <nav className="bg-slate-600 rounded-xl px-4 py-5 ">
           <div className="flex container  items-center justify-between mb-3">
