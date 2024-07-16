@@ -88,7 +88,7 @@ function Home(props) {
             </p>
           </div>
           <div className="flex-1 flex flex-col">
-            <p>{typeof tgId}</p>
+            <p>{tgPhoto}</p>
             <p className="font-bold text-lg">
               {userData && userData.tonBalance} TON
             </p>
