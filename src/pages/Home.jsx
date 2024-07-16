@@ -22,9 +22,9 @@ function Home(props) {
   const [userData, setUserData] = useState(null);
   const [tgId, setTGId] = useState(null);
   const [tgName, setTgName] = useState(null);
-  // const telegram = window.Telegram.WebApp;
+  const telegram = window.Telegram.WebApp;
 
-  // telegram.ready();
+  telegram.ready();
 
   const newUserData = async () => {
     const collectionRef = collection(db, "users");
