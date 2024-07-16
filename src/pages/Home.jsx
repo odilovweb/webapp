@@ -58,7 +58,7 @@ function Home(props) {
         setUserData(docSnap.data());
         console.log(docSnap.data());
       } else {
-        newUserData();
+        tgId && newUserData();
       }
     } catch (error) {
       console.error("Error fetching user data: ", error);
