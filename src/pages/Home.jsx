@@ -25,9 +25,9 @@ function Home(props) {
 
   telegram.ready();
 
-  const getUserData = async () => {
+  const getUserData = async (userId) => {
     try {
-      const docRef = doc(db, "users", tgId);
+      const docRef = doc(db, "users", userId);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
@@ -40,15 +40,17 @@ function Home(props) {
       console.error("Error fetching user data: ", error);
     }
   };
+
   useEffect(() => {
     if (telegram.initDataUnsafe) {
       const user = telegram.initDataUnsafe.user;
+      getUserData(user.id);
       setTGId(user.id);
       setTgPhoto(user.photo_url);
     }
-    getUserData();
+
     console.log(userData);
-  }, [props.id]);
+  }, []);
 
   const { id } = useParams();
 
