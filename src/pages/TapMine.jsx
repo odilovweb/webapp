@@ -37,8 +37,8 @@ function TapMine() {
       {active ? (
         <div className="h-44 max-w-full">
           <img
-            className="w-72 animate-spin mx-auto active:w-60 transition-all active:transition-all"
-            src={solana}
+            className="w-72 animate-spin mx-auto active:w-60 transition-all active:transition-all rounded"
+            src={solana && solana}
             onClick={() => {
               tapSoundFunc();
               setPoint((prev) => prev + 1);
