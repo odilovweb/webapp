@@ -26,6 +26,26 @@ function Home(props) {
 
   telegram.ready();
 
+  const newUserData = async () => {
+    try {
+      await db.collection("users").doc(tgId).set({
+        balance: 0,
+        tonBalance: 0,
+        inviter: null,
+        combos: 0,
+        daily: null,
+        friends: 0,
+        topFriends: [],
+        tasks: 0,
+        done: [],
+        tickets: 0,
+      });
+      console.log("User added successfully!");
+    } catch (error) {
+      console.error("Error adding user: ", error);
+    }
+  };
+
   const getUserData = async (userId) => {
     try {
       const docRef = doc(db, "users", `${userId}`);
@@ -35,7 +55,7 @@ function Home(props) {
         setUserData(docSnap.data());
         console.log(docSnap.data());
       } else {
-        console.log("No such document!");
+        newUserData();
       }
     } catch (error) {
       console.error("Error fetching user data: ", error);
