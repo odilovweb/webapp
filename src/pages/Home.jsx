@@ -13,7 +13,7 @@ import {
 import solana from ".././assets/onedrop.png";
 import onedrop from ".././assets/onedrop.png";
 import { db } from "../api/firebase-config";
-
+export let userDataBase = "";
 function Home(props) {
   console.log(props.id);
   const [balance, setBalance] = useState(0);
@@ -25,28 +25,28 @@ function Home(props) {
 
   telegram.ready();
 
-  const newUserData = async () => {
-    const collectionRef = collection(db, "users");
-    const newUser = {
-      balance: 0,
-      tonBalance: 0,
-      inviter: null,
-      combos: 0,
-      daily: null,
-      friends: 0,
-      topFriends: [],
-      tasks: 0,
-      done: [],
-      tickets: 0,
-    };
-    try {
-      const userRef = doc(collectionRef, `${tgId}`);
-      await setDoc(userRef, newUser);
-      console.log("it has done");
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  // const newUserData = async () => {
+  //   const collectionRef = collection(db, "users");
+  //   const newUser = {
+  //     balance: 0,
+  //     tonBalance: 0,
+  //     inviter: null,
+  //     combos: 0,
+  //     daily: null,
+  //     friends: 0,
+  //     topFriends: [],
+  //     tasks: 0,
+  //     done: [],
+  //     tickets: 0,
+  //   };
+  //   try {
+  //     const userRef = doc(collectionRef, `${tgId}`);
+  //     await setDoc(userRef, newUser);
+  //     console.log("it has done");
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
 
   const getUserData = async (userId) => {
     setIsLoading(true);
@@ -56,20 +56,13 @@ function Home(props) {
 
       if (docSnap.exists()) {
         setUserData(docSnap.data());
+        userDataBase = docSnap.data();
         setIsLoading(false);
       } else {
         console.log("Eror");
       }
     } catch (error) {
       console.error("Error fetching user data: ", error);
-    }
-  };
-
-  const updateUserData = async (data) => {
-    try {
-      const docRef = await updateDoc(doc(db, "users", `${payload}`), data);
-    } catch (e) {
-      console.error("Error adding document: ", e);
     }
   };
 

@@ -2,12 +2,17 @@ import React, { useEffect, useState } from "react";
 import solana from "../assets/onedrop.png";
 import { Link } from "react-router-dom";
 import musictap from "../../public/tapsound.mp3";
-
+import { useDispatch, useSelector } from "react-redux";
+import { minusTicket } from "../redux/miniAppSlice";
 function TapMine() {
   const [point, setPoint] = useState(0);
   const [active, isActive] = useState(true);
   const [time, setTime] = useState(20);
+  const tickets = useSelector((state) => state.tickets);
+  const balance = useSelector((state) => state.balance);
+  const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(minusTicket());
     setTimeout(() => {
       isActive(false);
     }, 20000);
@@ -48,19 +53,23 @@ function TapMine() {
       ) : (
         <nav className="bg-slate-600 rounded-xl px-4 py-5 ">
           <div className="flex container  items-center justify-between mb-3">
-            <btn
-              className="btn btn-sm  btn-warning"
-              onClick={() => {
-                isActive(true);
-                setTime(20);
-                setPoint(0);
-                setTimeout(() => {
-                  isActive(false);
-                }, 20000);
-              }}
-            >
-              Play more for 1 Ticket
-            </btn>
+            {balance && balance > 0 ? (
+              <button
+                className="btn btn-sm  btn-warning"
+                onClick={() => {
+                  isActive(true);
+                  setTime(20);
+                  setPoint(0);
+                  setTimeout(() => {
+                    isActive(false);
+                  }, 20000);
+                }}
+              >
+                Play more for 1 Ticket
+              </button>
+            ) : (
+              <Link to="/friends">You don't have any tickets</Link>
+            )}
             <Link to="/" className="btn btn-sm btn-warning">
               Back Home
             </Link>
