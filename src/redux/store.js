@@ -6,12 +6,12 @@ import { db } from "../api/firebase-config";
 let balanceUser = 0;
 let ticketsUser = 0;
 let userDatas = null;
-export let userData = null;
+
 export let friends = [];
 
 const telegram = window.Telegram.WebApp;
 telegram.ready();
-export const user = telegram.initDataUnsafe.user.id;
+const user = telegram.initDataUnsafe.user.id;
 
 const getUserData = async () => {
   try {
@@ -23,7 +23,6 @@ const getUserData = async () => {
       ticketsUser = docSnap.data().tickets;
       friends = docSnap.data().topFriends;
       userDatas = docSnap.data();
-      userData = docSnap.data();
       return docSnap.data();
     } else {
       console.log("Eror");
@@ -35,8 +34,10 @@ const getUserData = async () => {
 
 const initialState = async () => {
   return {
-    tickets: (await getUserData()) ? ticketsUser : 0,
-    balance: (await getUserData()) ? balanceUser : 0,
+    tickets: (await getUserData()) ? userDatas.ticketsUser : 0,
+    balance: (await getUserData()) ? userDatas.balanceUser : 0,
+    id: user,
+    userData: (await getUserData()) ? userDatas : null,
   };
 };
 

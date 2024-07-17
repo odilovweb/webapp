@@ -14,9 +14,9 @@ import solana from ".././assets/onedrop.png";
 import onedrop from ".././assets/onedrop.png";
 import { db } from "../api/firebase-config";
 import { useSelector } from "react-redux";
-import { user, userData } from "../redux/store";
+import { user } from "../redux/store";
 function Home(props) {
-  const { tickets, balance } = useSelector((state) => state.counter);
+  const { tickets, balance, userData } = useSelector((state) => state.counter);
 
   // const [userData, setUserData] = useState(null);
   const [tgId, setTGId] = useState(null);
