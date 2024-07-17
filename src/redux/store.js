@@ -9,13 +9,13 @@ let userDatas = null;
 
 export let friends = [];
 
-const telegram = window.Telegram.WebApp;
-telegram.ready();
-export const user = telegram.inDitataUnsafe.user.id;
+// const telegram = window.Telegram.WebApp;
+// telegram.ready();
+// export const user = telegram.inDitataUnsafe.user.id;
 
 const getUserData = async () => {
   try {
-    const docRef = doc(db, "users", user);
+    const docRef = doc(db, "users", `${841886966}`);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
