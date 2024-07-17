@@ -11,7 +11,7 @@ export let friends = [];
 
 // const telegram = window.Telegram.WebApp;
 // telegram.ready();
-// export const user = telegram.inDitataUnsafe.user.id;
+export const user = telegram.inDitataUnsafe.user.id;
 
 const getUserData = async () => {
   try {
