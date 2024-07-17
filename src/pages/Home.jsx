@@ -17,7 +17,7 @@ import { useSelector } from "react-redux";
 export let userDataBase = "";
 
 function Home(props) {
-  const { tickets } = useSelector((state) => state.comfySlice);
+  const { tickets } = useSelector((state) => state.comfy);
   const [balance, setBalance] = useState(0);
   const [userData, setUserData] = useState(null);
   const [tgId, setTGId] = useState(null);

@@ -3,7 +3,7 @@ import solana from "../assets/onedrop.png";
 import { Link } from "react-router-dom";
 import musictap from "../../public/tapsound.mp3";
 import { useDispatch, useSelector } from "react-redux";
-import { minusTicket } from "../redux/miniAppSlice";
+import { minusTicket } from "../redux/comfySlice";
 function TapMine() {
   const [point, setPoint] = useState(0);
   const [active, isActive] = useState(true);
