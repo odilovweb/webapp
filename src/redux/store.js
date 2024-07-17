@@ -30,16 +30,14 @@ const getUserData = async (idx) => {
     console.error("Error fetching user data: ", error);
   }
 };
-if (telegram.initDataUnsafe) {
-  const userIds = telegram.inDitataUnsafe.user.id;
-  const initialState = async () => {
-    return {
-      tickets: (await getUserData(userIds)) ? userDatas.ticketsUser : 0,
-      balance: (await getUserData(userIds)) ? userDatas.balanceUser : 0,
-      id: user,
-    };
+const userIds = telegram.inDitataUnsafe.user.id;
+const initialState = async () => {
+  return {
+    tickets: (await getUserData(userIds)) ? userDatas.ticketsUser : 0,
+    balance: (await getUserData(userIds)) ? userDatas.balanceUser : 0,
+    id: user,
   };
-}
+};
 
 const updateUserData = async (data) => {
   try {
