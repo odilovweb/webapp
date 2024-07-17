@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import comfySlice from "./comfySlice";
+import { comfySlice } from "./miniAppSlice";
 
 export const store = configureStore({
   reducer: {

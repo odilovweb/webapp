@@ -14,8 +14,8 @@ const updateUserData = async (data) => {
   }
 };
 
-const comfySlice = createSlice({
-  name: "miniapp",
+export const comfySlice = createSlice({
+  name: "comfySlice",
   initialState,
   reducers: {
     minusTicket: (state) => {
