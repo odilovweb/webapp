@@ -163,10 +163,7 @@ function Home(props) {
           <div className="flex container  items-center justify-between mb-3">
             {userData && userData.tickets > 0 ? (
               <Link
-                onClick={() => {
-                  setUserData((prev) => prev.tickets--);
-                  updateUserData(userData);
-                }}
+                onClick={() => {}}
                 to="/mining"
                 className="btn btn-sm  btn-warning"
               >
