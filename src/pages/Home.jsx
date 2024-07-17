@@ -25,29 +25,6 @@ function Home(props) {
   const telegram = window.Telegram.WebApp;
   telegram.ready();
 
-  // const newUserData = async () => {
-  //   const collectionRef = collection(db, "users");
-  //   const newUser = {
-  //     balance: 0,
-  //     tonBalance: 0,
-  //     inviter: null,
-  //     combos: 0,
-  //     daily: null,
-  //     friends: 0,
-  //     topFriends: [],
-  //     tasks: 0,
-  //     done: [],
-  //     tickets: 0,
-  //   };
-  //   try {
-  //     const userRef = doc(collectionRef, `${tgId}`);
-  //     await setDoc(userRef, newUser);
-  //     console.log("it has done");
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
-
   const getUserData = async (userIds) => {
     setIsLoading(true);
     try {
@@ -68,9 +45,9 @@ function Home(props) {
 
   useEffect(() => {
     if (telegram.initDataUnsafe) {
-      getUserData(user.id);
+      getUserData(telegram.user.id);
     }
-    getUserData();
+
     // console.log(userData);
   }, []);
 
