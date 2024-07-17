@@ -11,11 +11,11 @@ export let friends = [];
 
 const telegram = window.Telegram.WebApp;
 telegram.ready();
-const user = telegram.initDataUnsafe.user;
+export const user = telegram.initDataUnsafe.user.id;
 
 const getUserData = async () => {
   try {
-    const docRef = doc(db, "users", user.id);
+    const docRef = doc(db, "users", user);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {

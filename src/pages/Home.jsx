@@ -14,7 +14,7 @@ import solana from ".././assets/onedrop.png";
 import onedrop from ".././assets/onedrop.png";
 import { db } from "../api/firebase-config";
 import { useSelector } from "react-redux";
-import { userData } from "../redux/store";
+import { user, userData } from "../redux/store";
 function Home(props) {
   const { tickets, balance } = useSelector((state) => state.counter);
 
@@ -143,7 +143,7 @@ function Home(props) {
             }, 2000);
           }}
         >
-          TonCoop Mining
+          {user}
         </button>
       </div>
       <div className="flex flex-col justify-between content-between ">
