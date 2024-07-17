@@ -22,13 +22,13 @@ function Home(props) {
   const [tgName, setTgName] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const telegram = window.Telegram.WebApp;
-  telegram.ready();
+  // const telegram = window.Telegram.WebApp;
+  // telegram.ready();
 
   const getUserData = async (userIds) => {
     setIsLoading(true);
     try {
-      const docRef = doc(db, "users", `${userIds}`);
+      const docRef = doc(db, "users", `${841886966}`);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
@@ -44,9 +44,9 @@ function Home(props) {
   };
 
   useEffect(() => {
-    if (telegram.initDataUnsafe) {
-      getUserData(telegram.user.id);
-    }
+    // if (telegram.initDataUnsafe) {
+    getUserData(841886966);
+    // }
 
     // console.log(userData);
   }, []);
