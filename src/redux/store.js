@@ -34,8 +34,8 @@ const getUserData = async () => {
 };
 console.log(getUserData());
 const initialState = {
-  tickets: (await getUserData()) ? ticketsUser : 0,
-  balance: (await getUserData()) ? balanceUser : 0,
+  tickets: getUserData() ? ticketsUser : 0,
+  balance: getUserData() ? balanceUser : 0,
 };
 
 const updateUserData = async (data) => {
