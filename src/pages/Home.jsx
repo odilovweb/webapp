@@ -20,6 +20,7 @@ function Home(props) {
   const [userData, setUserData] = useState(null);
   const [tgId, setTGId] = useState(null);
   const [tgName, setTgName] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const telegram = window.Telegram.WebApp;
 
   telegram.ready();
@@ -48,18 +49,27 @@ function Home(props) {
   };
 
   const getUserData = async (userId) => {
+    setIsLoading(true);
     try {
       const docRef = doc(db, "users", `${userId}`);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
         setUserData(docSnap.data());
-        console.log(docSnap.data());
+        setIsLoading(false);
       } else {
         console.log("Eror");
       }
     } catch (error) {
       console.error("Error fetching user data: ", error);
+    }
+  };
+
+  const updateUserData = async (data) => {
+    try {
+      const docRef = await updateDoc(doc(db, "users", `${payload}`), data);
+    } catch (e) {
+      console.error("Error adding document: ", e);
     }
   };
 
@@ -159,7 +169,14 @@ function Home(props) {
         <nav className="bg-slate-600 rounded-xl px-4 py-5 mt-14 ">
           <div className="flex container  items-center justify-between mb-3">
             {userData && userData.tickets > 0 ? (
-              <Link to="/mining" className="btn btn-sm  btn-warning">
+              <Link
+                onClick={() => {
+                  setUserData((prev) => prev.tickets--);
+                  updateUserData(userData);
+                }}
+                to="/mining"
+                className="btn btn-sm  btn-warning"
+              >
                 Play for 1 Ticket
               </Link>
             ) : (
