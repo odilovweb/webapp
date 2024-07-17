@@ -13,9 +13,11 @@ import {
 import solana from ".././assets/onedrop.png";
 import onedrop from ".././assets/onedrop.png";
 import { db } from "../api/firebase-config";
+import { useSelector } from "react-redux";
 export let userDataBase = "";
+
 function Home(props) {
-  console.log(props.id);
+  const { tickets } = useSelector((state) => state.comfySlice);
   const [balance, setBalance] = useState(0);
   const [userData, setUserData] = useState(null);
   const [tgId, setTGId] = useState(null);
@@ -175,7 +177,7 @@ function Home(props) {
               </Link>
             )}
             <h3 className="btn btn-sm btn-warning">
-              Your Tickets: {userData && userData.tickets}
+              Your Tickets: {userData && tickets}
             </h3>
           </div>
           <Link to="/friends" className="btn btn-sm btn-info">
