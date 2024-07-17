@@ -32,8 +32,8 @@ const getUserData = async (idx) => {
 };
 // const userIds = telegram.inDitataUnsafe.user.id;
 const initialState = {
-  tickets: getUserData(841886966) ? userDatas.ticketsUser : 0,
-  balance: getUserData(841886966) ? userDatas.balanceUser : 0,
+  tickets: getUserData(841886966) ? userDatas.tickets : 0,
+  balance: getUserData(841886966) ? userDatas.balance : 0,
   id: user,
 };
 
