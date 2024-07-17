@@ -7,6 +7,8 @@ import {
   FaRocket,
   FaListCheck,
   FaGem,
+  FaPerson,
+  FaCoins,
 } from "react-icons/fa6";
 // import { id } from "../pages/Home";
 function Navbar() {
@@ -16,22 +18,22 @@ function Navbar() {
       <div className="flex container  items-center justify-between">
         <Link
           to={`/`}
-          className="text-3xl  flex flex-col text-white hover:text-red-600"
+          className="text-xl  flex flex-col text-white hover:text-red-600"
         >
           <FaGem className="mx-auto" />
-          <span className="text-xl font-bold">Mining</span>
+          <span className="text-lg font-bold">Mining</span>
         </Link>
-        <Link className="text-3xl  flex flex-col  text-white hover:text-red-600">
-          <FaRocket className="mx-auto" />
-          <span className="text-xl font-bold">Boost</span>
+        <Link className="text-xl  flex flex-col  text-white hover:text-red-600">
+          <FaPerson className="mx-auto" />
+          <span className="text-lg font-bold">Friends</span>
         </Link>
-        <Link className="text-3xl  flex flex-col  text-white hover:text-red-600">
+        <Link className="text-xl  flex flex-col  text-white hover:text-red-600">
           <FaListCheck className="mx-auto" />
-          <span className="text-xl font-bold">Tasks</span>
+          <span className="text-lg font-bold">Tasks</span>
         </Link>
-        <Link className="text-3xl  flex flex-col  text-white hover:text-red-600">
-          <FaWallet className="mx-auto" />
-          <span className="text-xl font-bold">Wallet</span>
+        <Link className="text-xl  flex flex-col  text-white hover:text-red-600">
+          <FaCoins className="mx-auto" />
+          <span className="text-lg font-bold">Earn</span>
         </Link>
       </div>
     </nav>
