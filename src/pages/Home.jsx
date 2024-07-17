@@ -16,9 +16,9 @@ import { db } from "../api/firebase-config";
 import { useSelector } from "react-redux";
 import { user } from "../redux/store";
 function Home(props) {
-  const { tickets, balance, userData } = useSelector((state) => state.counter);
+  const { tickets, balance } = useSelector((state) => state.counter);
 
-  // const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState(null);
   const [tgId, setTGId] = useState(null);
   const [tgName, setTgName] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -46,10 +46,10 @@ function Home(props) {
   //   }
   // };
 
-  const getUserData = async (userId) => {
+  const getUserData = async () => {
     setIsLoading(true);
     try {
-      const docRef = doc(db, "users", `${841886966}`);
+      const docRef = doc(db, "users", user);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
@@ -63,17 +63,16 @@ function Home(props) {
     }
   };
 
-  // useEffect(() => {
-  //   if (telegram.initDataUnsafe) {
+  useEffect(() => {
+    if (telegram.initDataUnsafe) {
+      setTGId(`${user.id}`);
+      getUserData(user.id);
+      setTgName(user.first_name);
+    }
+    getUserData();
 
-  //     setTGId(`${user.id}`);
-  //     getUserData(user.id);
-  //     setTgName(user.first_name);
-  //   }
-  //   getUserData(`${841886966}`);
-
-  //   console.log(userData);
-  // }, []);
+    console.log(userData);
+  }, []);
 
   const [isActive, setActive] = useState(false);
   const [isSending, setIsSending] = useState(false);

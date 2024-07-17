@@ -37,7 +37,6 @@ const initialState = async () => {
     tickets: (await getUserData()) ? userDatas.ticketsUser : 0,
     balance: (await getUserData()) ? userDatas.balanceUser : 0,
     id: user,
-    userData: (await getUserData()) ? userDatas : null,
   };
 };
 
