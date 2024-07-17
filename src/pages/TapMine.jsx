@@ -65,7 +65,9 @@ function TapMine() {
               Back Home
             </Link>
           </div>
-          <h2 className="btn btn-sm btn-info">Get More Tickets</h2>
+          <Link to="/friends" className="btn btn-sm btn-info">
+            Get More Tickets
+          </Link>
         </nav>
       )}
     </div>

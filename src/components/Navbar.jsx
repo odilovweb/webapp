@@ -24,7 +24,10 @@ function Navbar() {
           <FaGem className="mx-auto" />
           <span className="text-lg font-bold">Mining</span>
         </Link>
-        <Link className="text-xl  flex flex-col  text-white hover:text-red-600">
+        <Link
+          to="/friends"
+          className="text-xl  flex flex-col  text-white hover:text-red-600"
+        >
           <FaUser className="mx-auto" />
           <span className="text-lg font-bold">Friends</span>
         </Link>
