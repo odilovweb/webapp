@@ -14,7 +14,6 @@ import solana from ".././assets/onedrop.png";
 import onedrop from ".././assets/onedrop.png";
 import { db } from "../api/firebase-config";
 import { useSelector } from "react-redux";
-import { user } from "../redux/store";
 function Home(props) {
   const { tickets, balance } = useSelector((state) => state.counter);
 
@@ -22,9 +21,9 @@ function Home(props) {
   const [tgId, setTGId] = useState(null);
   const [tgName, setTgName] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  // const telegram = window.Telegram.WebApp;
-  // telegram.ready();
-  // const userId = telegram.inDitataUnsafe.user.id;
+
+  const telegram = window.Telegram.WebApp;
+  telegram.ready();
 
   // const newUserData = async () => {
   //   const collectionRef = collection(db, "users");
@@ -49,14 +48,15 @@ function Home(props) {
   //   }
   // };
 
-  const getUserData = async () => {
+  const getUserData = async (userIds) => {
     setIsLoading(true);
     try {
-      const docRef = doc(db, "users", `${841886966}`);
+      const docRef = doc(db, "users", `${userIds}`);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
         setUserData(docSnap.data());
+        console.log(docSnap.data());
         setIsLoading(false);
       } else {
         console.log("Eror");
@@ -68,13 +68,10 @@ function Home(props) {
 
   useEffect(() => {
     if (telegram.initDataUnsafe) {
-      setTGId(`${user.id}`);
       getUserData(user.id);
-      setTgName(user.first_name);
     }
     getUserData();
-
-    console.log(userData);
+    // console.log(userData);
   }, []);
 
   const [isActive, setActive] = useState(false);
@@ -145,7 +142,7 @@ function Home(props) {
             }, 2000);
           }}
         >
-          {user}
+          Ton Mining
         </button>
       </div>
       <div className="flex flex-col justify-between content-between ">

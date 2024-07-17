@@ -9,13 +9,12 @@ let userDatas = null;
 
 export let friends = [];
 
-// const telegram = window.Telegram.WebApp;
-// telegram.ready();
-// export const user = telegram.inDitataUnsafe.user.id;
+const telegram = window.Telegram.WebApp;
+telegram.ready();
 
-const getUserData = async () => {
+const getUserData = async (idx) => {
   try {
-    const docRef = doc(db, "users", `${841886966}`);
+    const docRef = doc(db, "users", `${idx}`);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
@@ -31,14 +30,16 @@ const getUserData = async () => {
     console.error("Error fetching user data: ", error);
   }
 };
-
-const initialState = async () => {
-  return {
-    tickets: (await getUserData()) ? userDatas.ticketsUser : 0,
-    balance: (await getUserData()) ? userDatas.balanceUser : 0,
-    // id: user,
+if (telegram.initDataUnsafe) {
+  const userIds = telegram.inDitataUnsafe.user.id;
+  const initialState = async () => {
+    return {
+      tickets: (await getUserData(userIds)) ? userDatas.ticketsUser : 0,
+      balance: (await getUserData(userIds)) ? userDatas.balanceUser : 0,
+      id: user,
+    };
   };
-};
+}
 
 const updateUserData = async (data) => {
   try {
