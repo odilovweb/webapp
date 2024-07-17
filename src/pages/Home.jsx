@@ -14,18 +14,14 @@ import solana from ".././assets/onedrop.png";
 import onedrop from ".././assets/onedrop.png";
 import { db } from "../api/firebase-config";
 import { useSelector } from "react-redux";
-export let userDataBase = "";
-
+import { userData } from "../redux/store";
 function Home(props) {
-  const { tickets } = useSelector((state) => state.comfy);
-  const [balance, setBalance] = useState(0);
-  const [userData, setUserData] = useState(null);
+  const { tickets, balance } = useSelector((state) => state.counter);
+
+  // const [userData, setUserData] = useState(null);
   const [tgId, setTGId] = useState(null);
   const [tgName, setTgName] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const telegram = window.Telegram.WebApp;
-
-  telegram.ready();
 
   // const newUserData = async () => {
   //   const collectionRef = collection(db, "users");
@@ -53,12 +49,11 @@ function Home(props) {
   const getUserData = async (userId) => {
     setIsLoading(true);
     try {
-      const docRef = doc(db, "users", `${userId}`);
+      const docRef = doc(db, "users", `${841886966}`);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
         setUserData(docSnap.data());
-        userDataBase = docSnap.data();
         setIsLoading(false);
       } else {
         console.log("Eror");
@@ -68,17 +63,17 @@ function Home(props) {
     }
   };
 
-  useEffect(() => {
-    if (telegram.initDataUnsafe) {
-      const user = telegram.initDataUnsafe.user;
-      setTGId(`${user.id}`);
-      getUserData(user.id);
-      setTgName(user.first_name);
-    }
-    getUserData(`${tgId}`);
+  // useEffect(() => {
+  //   if (telegram.initDataUnsafe) {
 
-    console.log(userData);
-  }, []);
+  //     setTGId(`${user.id}`);
+  //     getUserData(user.id);
+  //     setTgName(user.first_name);
+  //   }
+  //   getUserData(`${841886966}`);
+
+  //   console.log(userData);
+  // }, []);
 
   const [isActive, setActive] = useState(false);
   const [isSending, setIsSending] = useState(false);
@@ -108,9 +103,7 @@ function Home(props) {
             </button>
           </div>
           <div className="flex-1 flex flex-col">
-            <p className="font-bold text-lg">
-              {userData && userData.balance} ONDP
-            </p>
+            <p className="font-bold text-lg">{userData && balance} ONDP</p>
           </div>
           <div className="flex-1 flex flex-col">
             <p className="font-bold text-lg">
@@ -163,7 +156,7 @@ function Home(props) {
         </div>
         <nav className="bg-slate-600 rounded-xl px-4 py-5 mt-14 ">
           <div className="flex container  items-center justify-between mb-3">
-            {userData && userData.tickets > 0 ? (
+            {userData && tickets > 0 ? (
               <Link
                 onClick={() => {}}
                 to="/mining"
@@ -172,7 +165,7 @@ function Home(props) {
                 Play for 1 Ticket
               </Link>
             ) : (
-              <Link to="/" className="btn btn-sm  btn-warning">
+              <Link to="/friends" className="btn btn-sm  btn-warning">
                 Play for 1 Ticket
               </Link>
             )}

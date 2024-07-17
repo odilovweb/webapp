@@ -24,6 +24,9 @@ import {
 } from "firebase/firestore";
 import Tapping from "./pages/Tapping";
 import Friends from "./pages/Friends";
+import Tasks from "./pages/TasksPage";
+import TasksPage from "./pages/TasksPage";
+
 function App() {
   const [id, setId] = useState("841886966");
   const [url, urlPhoto] = useState("");
@@ -43,6 +46,7 @@ function App() {
         <Route path="/" element={<RooterLayout />}>
           <Route index element={<Home />} />
           <Route path="/friends" element={<Friends />} />
+          <Route path="/tasks" element={<TasksPage />} />
         </Route>{" "}
         <Route path="/mining" element={<TapMine />} />
         <Route path="/tapping" element={<Tapping />} />

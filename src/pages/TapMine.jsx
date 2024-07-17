@@ -3,20 +3,29 @@ import solana from "../assets/onedrop.png";
 import { Link } from "react-router-dom";
 import musictap from "../../public/tapsound.mp3";
 import { useDispatch, useSelector } from "react-redux";
-import { minusTicket } from "../redux/comfySlice";
+import { ticketMinus, plusBalance } from "../redux/store";
 function TapMine() {
   const [point, setPoint] = useState(0);
-  const [active, isActive] = useState(true);
+  const [active, isActive] = useState(false);
   const [time, setTime] = useState(20);
-  const tickets = useSelector((state) => state.tickets);
-  const balance = useSelector((state) => state.balance);
+  // const tickets = useSelector((state) => state.tickets);
+  // const balance = useSelector((state) => state.balance);
   const dispatch = useDispatch();
+  const { tickets, balance } = useSelector((state) => state.counter);
+  const addBalance = () => {
+    dispatch(plusBalance(point));
+  };
+
   useEffect(() => {
-    dispatch(minusTicket());
-    setTimeout(() => {
-      isActive(false);
-    }, 20000);
+    if (tickets > 0) {
+      isActive(true);
+      dispatch(ticketMinus());
+      setTimeout(() => {
+        isActive(false);
+      }, 20000);
+    }
   }, []);
+
   useEffect(() => {
     if (active) {
       const interval = setInterval(() => {
@@ -24,8 +33,11 @@ function TapMine() {
       }, 1000);
 
       return () => clearInterval(interval);
+    } else {
+      addBalance();
     }
   }, [active]);
+
   const tapSoundFunc = () => {
     const tapSound = new Audio(musictap);
     tapSound.play();
@@ -36,7 +48,11 @@ function TapMine() {
       <div>
         <h1 className="font-bold text-5xl text-cyan-600 flex flex-col">
           <span>Your Points: {point} </span>
-          <span>{active && `00 : ${time}`}</span>
+          {active && (
+            <span className="btn btn-outline btn-warning">
+              {`00 : ${time}`}
+            </span>
+          )}
         </h1>
       </div>
       {active ? (
@@ -52,11 +68,15 @@ function TapMine() {
         </div>
       ) : (
         <nav className="bg-slate-600 rounded-xl px-4 py-5 ">
+          <button className="btn btn-info max-w-full mx-auto">
+            Your Tickets {tickets}
+          </button>
           <div className="flex container  items-center justify-between mb-3">
-            {balance && balance > 0 ? (
+            {tickets && tickets > 0 ? (
               <button
                 className="btn btn-sm  btn-warning"
                 onClick={() => {
+                  dispatch(ticketMinus());
                   isActive(true);
                   setTime(20);
                   setPoint(0);
@@ -68,15 +88,14 @@ function TapMine() {
                 Play more for 1 Ticket
               </button>
             ) : (
-              <Link to="/friends">You don't have any tickets</Link>
+              <Link className="btn btn-sm btn-info" to="/friends">
+                You don't have any tickets
+              </Link>
             )}
             <Link to="/" className="btn btn-sm btn-warning">
               Back Home
             </Link>
           </div>
-          <Link to="/friends" className="btn btn-sm btn-info">
-            Get More Tickets
-          </Link>
         </nav>
       )}
     </div>

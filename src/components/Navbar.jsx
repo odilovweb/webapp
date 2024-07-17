@@ -31,13 +31,12 @@ function Navbar() {
           <FaUser className="mx-auto" />
           <span className="text-lg font-bold">Friends</span>
         </Link>
-        <Link className="text-xl  flex flex-col  text-white hover:text-red-600">
+        <Link
+          to={"/tasks"}
+          className="text-xl  flex flex-col  text-white hover:text-red-600"
+        >
           <FaListCheck className="mx-auto" />
           <span className="text-lg font-bold">Tasks</span>
-        </Link>
-        <Link className="text-xl  flex flex-col  text-white hover:text-red-600">
-          <FaCoins className="mx-auto" />
-          <span className="text-lg font-bold">Earn</span>
         </Link>
       </div>
     </nav>
