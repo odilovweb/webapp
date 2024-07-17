@@ -22,6 +22,9 @@ function Home(props) {
   const [tgId, setTGId] = useState(null);
   const [tgName, setTgName] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const telegram = window.Telegram.WebApp;
+  telegram.ready();
+  const userId = telegram.inDitataUnsafe.user.id;
 
   // const newUserData = async () => {
   //   const collectionRef = collection(db, "users");
@@ -49,7 +52,7 @@ function Home(props) {
   const getUserData = async () => {
     setIsLoading(true);
     try {
-      const docRef = doc(db, "users", user);
+      const docRef = doc(db, "users", `${userId}`);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
