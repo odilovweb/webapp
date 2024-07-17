@@ -32,10 +32,12 @@ const getUserData = async () => {
     console.error("Error fetching user data: ", error);
   }
 };
-console.log(getUserData());
+const getDatas = async () => {
+  return await getUserData();
+};
 const initialState = {
-  tickets: getUserData() ? ticketsUser : 0,
-  balance: getUserData() ? balanceUser : 0,
+  tickets: getDatas() ? ticketsUser : 0,
+  balance: getDatas() ? balanceUser : 0,
 };
 
 const updateUserData = async (data) => {
