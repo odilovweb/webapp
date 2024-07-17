@@ -9,6 +9,7 @@ import {
   FaGem,
   FaPerson,
   FaCoins,
+  FaUser,
 } from "react-icons/fa6";
 // import { id } from "../pages/Home";
 function Navbar() {
@@ -24,7 +25,7 @@ function Navbar() {
           <span className="text-lg font-bold">Mining</span>
         </Link>
         <Link className="text-xl  flex flex-col  text-white hover:text-red-600">
-          <FaPerson className="mx-auto" />
+          <FaUser className="mx-auto" />
           <span className="text-lg font-bold">Friends</span>
         </Link>
         <Link className="text-xl  flex flex-col  text-white hover:text-red-600">

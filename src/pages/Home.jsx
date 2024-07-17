@@ -156,7 +156,7 @@ function Home(props) {
             className="w-56 h-56 mx-auto rounded-full"
           />
         </div>
-        <nav className="bg-slate-600 rounded-xl px-4 py-5 ">
+        <nav className="bg-slate-600 rounded-xl px-4 py-5 mt-14 ">
           <div className="flex container  items-center justify-between mb-3">
             {userData && userData.tickets > 0 ? (
               <Link to="/mining" className="btn btn-sm  btn-warning">
@@ -168,7 +168,7 @@ function Home(props) {
               </Link>
             )}
             <h3 className="btn btn-sm btn-warning">
-              Your Tickets: ${userData && userData.tickets}
+              Your Tickets: {userData && userData.tickets}
             </h3>
           </div>
           <h2 className="btn btn-sm btn-info">Get More Tickets</h2>
