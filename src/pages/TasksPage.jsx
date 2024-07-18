@@ -40,9 +40,9 @@ function TasksPage() {
     return doneTasks.includes(id);
   };
 
-  const updateUserData = async (data) => {
+  const updateUserData = async (data, idX) => {
     try {
-      const docRef = await updateDoc(doc(db, "users", `${841886966}`), data);
+      const docRef = await updateDoc(doc(db, "users", `${idX}`), data);
       console.log("done");
     } catch (e) {
       console.error("Error adding document: ", e);
@@ -52,7 +52,7 @@ function TasksPage() {
   const getUserData = async (userId) => {
     setIsLoading(true);
     try {
-      const docSnap = await getDocs(collection(db, "tasks"));
+      const docSnap = await getDocs(collection(db, "tasks", userId));
 
       const data = docSnap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       setTasksIds(data);
@@ -128,7 +128,12 @@ function TasksPage() {
                               dataUser.balance += task.telegram.bonus;
                               dataUser.tasks.push(task.telegram.id);
                               doneTasks.push(task.telegram.id);
-                              updateUserData(dataUser);
+                              if (telegram.initDataUnsafe) {
+                                updateUserData(
+                                  dataUser,
+                                  telegram.initDataUnsafe.user.id
+                                );
+                              }
                             }}
                             className="btn btn-warning"
                           >

@@ -36,9 +36,9 @@ function TapMine() {
     }
   };
 
-  const updateUserData = async (data) => {
+  const updateUserData = async (data, idX) => {
     try {
-      const docRef = await updateDoc(doc(db, "users", `${id}`), data);
+      const docRef = await updateDoc(doc(db, "users", `${idX}`), data);
       console.log("yangilandi");
     } catch (e) {
       console.error("Error adding document: ", e);
@@ -74,7 +74,9 @@ function TapMine() {
         balance: userData.balance + point,
         tickets: userData.tickets - 1,
       };
-      updateUserData(newUserData);
+      if (telegram.initDataUnsafe) {
+        updateUserData(newUserData, telegram.initDataUnsafe.user.id);
+      }
       console.log(newUserData);
     }
   }, [active]);
