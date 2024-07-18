@@ -17,8 +17,8 @@ function TapMine() {
     const tapSound = new Audio(musictap);
     tapSound.play();
   };
-  // const telegram = window.Telegram.WebApp;
-  // telegram.ready();
+  const telegram = window.Telegram.WebAppUser;
+  telegram.ready();
   const getUserData = async (id) => {
     setIsLoading(true);
     try {
@@ -47,9 +47,9 @@ function TapMine() {
   };
 
   useEffect(() => {
-    // if (telegram.initDataUnsafe) {
-    getUserData("841886966");
-    // }
+    if (telegram.initDataUnsafe) {
+      getUserData(telegram.id);
+    }
   }, []);
 
   useEffect(() => {

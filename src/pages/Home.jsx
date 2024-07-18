@@ -21,8 +21,8 @@ function Home(props) {
   const [tgName, setTgName] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // const telegram = window.Telegram.WebApp;
-  // telegram.ready();
+  const telegram = window.Telegram.WebAppUser;
+  telegram.ready();
 
   const getUserData = async (userIds) => {
     setIsLoading(true);
@@ -43,9 +43,9 @@ function Home(props) {
   };
 
   useEffect(() => {
-    // if (telegram.initDataUnsafe) {
-    getUserData("841886966");
-    // }
+    if (telegram.initDataUnsafe) {
+      getUserData(telegram.id);
+    }
   }, []);
   console.log(userData);
   const [isActive, setActive] = useState(false);
