@@ -50,10 +50,10 @@ function TasksPage() {
     }
   };
 
-  const getUserData = async (userId) => {
+  const getUserData = async () => {
     setIsLoading(true);
     try {
-      const docSnap = await getDocs(collection(db, "tasks", userId));
+      const docSnap = await getDocs(collection(db, "tasks"));
 
       const data = docSnap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       setTasksIds(data);
@@ -66,8 +66,7 @@ function TasksPage() {
     telegram.ready();
 
     if (telegram.initDataUnsafe) {
-      getUserData(telegram.initDataUnsafe.user.id);
-      setText(telegram.initDataUnsafe.user.id);
+      getUserDatas(telegram.initDataUnsafe.user.id);
     }
 
     getUserData();
@@ -80,7 +79,7 @@ function TasksPage() {
           {/* head */}
           <thead>
             <tr>
-              <th>{text}</th>
+              <th>Type</th>
               <th>Title</th>
               <th>Amount Prize</th>
               <th></th>
