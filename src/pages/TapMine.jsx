@@ -49,7 +49,7 @@ function TapMine() {
     telegram.ready();
 
     if (telegram.initDataUnsafe) {
-      getUserData(telegram.user.id);
+      getUserData(telegram.initDataUnsafe.user.id);
     }
   }, []);
 

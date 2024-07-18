@@ -44,7 +44,7 @@ function Home(props) {
   useEffect(() => {
     telegram.ready();
     if (telegram.initDataUnsafe) {
-      getUserData(telegram.user.id);
+      getUserData(telegram.initDataUnsafe.user.id);
     }
   }, []);
   console.log(userData);

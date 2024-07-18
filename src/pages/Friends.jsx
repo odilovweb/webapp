@@ -32,7 +32,7 @@ function Friends() {
   useEffect(() => {
     telegram.ready();
     if (telegram.initDataUnsafe) {
-      getUserData(telegram.user.id);
+      getUserData(telegram.initDataUnsafe.user.id);
     }
   }, []);
   const [isActive, setIsActive] = useState(false);
