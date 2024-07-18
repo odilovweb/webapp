@@ -32,7 +32,7 @@ function Friends() {
   useEffect(() => {
     telegram.ready();
     if (telegram.initDataUnsafe) {
-      getUserData(telegram.initDataUnsafe.user.id);
+      getUserData("841886966");
     }
   }, []);
 
