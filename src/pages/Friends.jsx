@@ -35,6 +35,7 @@ function Friends() {
       getUserData(telegram.initDataUnsafe.user.id);
     }
   }, []);
+
   const [isActive, setIsActive] = useState(false);
   return (
     <div className="h-full relative ">
@@ -82,9 +83,9 @@ function Friends() {
                 {friends &&
                   friends.map((user, i) => {
                     return (
-                      <tr key={user.id}>
+                      <tr key={user.name}>
                         <th>{(i += 1)}</th>
-                        <td>{user.id}</td>
+                        <td>{user.name}</td>
                         <td className="max-w-11 max-h-9">
                           {user.name.toString().slice(0, 10)}...
                         </td>
