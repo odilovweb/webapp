@@ -13,6 +13,7 @@ function TapMine() {
   const [userData, setUserData] = useState(null);
   const [point, setPoint] = useState(0);
   const [time, setTime] = useState(20);
+  const [userId, setUserId] = useState(null);
 
   const tapSoundFunc = () => {
     const tapSound = new Audio(musictap);
@@ -50,6 +51,7 @@ function TapMine() {
 
     if (telegram.initDataUnsafe) {
       getUserData(telegram.initDataUnsafe.user.id);
+      setUserId(telegram.initDataUnsafe.user.id);
     }
   }, []);
 
@@ -113,7 +115,7 @@ function TapMine() {
             <nav className="bg-slate-600 rounded-xl px-4 py-5 ">
               <div className=" container  items-center flex flex-col gap-3 ">
                 <a
-                  href={`https://t.me/share/url?url=https://t.me/OnedropMine_bot?start=${id}&text=
+                  href={`https://t.me/share/url?url=https://t.me/OnedropMine_bot?start=${userId}&text=
 🎮Hey friend! Got ${point} ONDP ! Join me and try to top my score!`}
                   className="btn  btn-"
                 >

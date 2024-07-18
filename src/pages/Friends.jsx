@@ -9,6 +9,7 @@ import { telegram } from "../App";
 function Friends() {
   const [friends, setFriends] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [userId, setUserId] = useState(null);
 
   const getUserData = async (Idx) => {
     setIsLoading(true);
@@ -32,7 +33,8 @@ function Friends() {
   useEffect(() => {
     telegram.ready();
     if (telegram.initDataUnsafe) {
-      getUserData("841886966");
+      setUserId(telegram.initDataUnsafe.user.id);
+      getUserData(telegram.initDataUnsafe.user.id);
     }
   }, []);
 
@@ -104,7 +106,7 @@ function Friends() {
       </div>
       <div className="flex flex-col gap-6 absolute bottom-7 max-w-full w-full">
         <a
-          href={`https://t.me/share/url?url=https://t.me/OnedropMine_bot?start=${id}&text=
+          href={`https://t.me/share/url?url=https://t.me/OnedropMine_bot?start=${userId}&text=
 🎮Hey friend! Let’s play together and earn Toncoin for free!`}
           className="btn btn-outline btn-secondary"
         >
@@ -116,7 +118,7 @@ function Friends() {
         <button
           onClick={() => {
             navigator.clipboard
-              .writeText(`https://t.me/OnedropMine_bot?start=${id}`)
+              .writeText(`https://t.me/OnedropMine_bot?start=${userId}`)
               .then(() => {
                 setIsActive(true);
                 setTimeout(() => {
