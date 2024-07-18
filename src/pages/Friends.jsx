@@ -6,7 +6,7 @@ import toncoin from "../assets/toncoin.svg";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../api/firebase-config";
 function Friends() {
-  const telegram = window.Telegram.WebAppUser;
+  const telegram = window.Telegram.WebApp;
   telegram.ready();
   const [friends, setFriends] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -31,7 +31,7 @@ function Friends() {
 
   useEffect(() => {
     if (telegram.initDataUnsafe) {
-      getUserData(telegram.id);
+      getUserData(telegram.user.id);
     }
   }, []);
   const [isActive, setIsActive] = useState(false);

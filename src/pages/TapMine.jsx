@@ -17,7 +17,7 @@ function TapMine() {
     const tapSound = new Audio(musictap);
     tapSound.play();
   };
-  const telegram = window.Telegram.WebAppUser;
+  const telegram = window.Telegram.WebApp;
   telegram.ready();
   const getUserData = async (id) => {
     setIsLoading(true);
@@ -48,7 +48,7 @@ function TapMine() {
 
   useEffect(() => {
     if (telegram.initDataUnsafe) {
-      getUserData(telegram.id);
+      getUserData(telegram.user.id);
     }
   }, []);
 

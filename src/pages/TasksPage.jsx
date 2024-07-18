@@ -61,11 +61,11 @@ function TasksPage() {
       console.error("Error fetching user data: ", error);
     }
   };
-  const telegram = window.Telegram.WebAppUser;
+  const telegram = window.Telegram.WebApp;
   telegram.ready();
   useEffect(() => {
     if (telegram.initDataUnsafe) {
-      getUserData(telegram.id);
+      getUserData(telegram.user.id);
     }
 
     getUserData();
