@@ -10,10 +10,10 @@ function Friends() {
 
   const [friends, setFriends] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const getUserData = async (id) => {
+  const getUserData = async (Idx) => {
     setIsLoading(true);
     try {
-      const docRef = doc(db, "users", `${id}`);
+      const docRef = doc(db, "users", `${Idx}`);
 
       const docSnap = await getDoc(docRef);
 
