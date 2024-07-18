@@ -78,18 +78,19 @@ function Friends() {
                 </tr>
               </thead>
               <tbody>
-                {friends.map((user, i) => {
-                  return (
-                    <tr key={user.id}>
-                      <th>{(i += 1)}</th>
-                      <td>{user.id}</td>
-                      <td className="max-w-11 max-h-9">
-                        {user.name.toString().slice(0, 10)}...
-                      </td>
-                      <td>{user.time.toString().slice(0, 10)}</td>
-                    </tr>
-                  );
-                })}
+                {friends &&
+                  friends.map((user, i) => {
+                    return (
+                      <tr key={user.id}>
+                        <th>{(i += 1)}</th>
+                        <td>{user.id}</td>
+                        <td className="max-w-11 max-h-9">
+                          {user.name.toString().slice(0, 10)}...
+                        </td>
+                        <td>{user.time.toString().slice(0, 10)}</td>
+                      </tr>
+                    );
+                  })}
               </tbody>
             </table>
           </div>
