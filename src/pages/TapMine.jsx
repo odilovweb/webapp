@@ -18,10 +18,10 @@ function TapMine() {
     const tapSound = new Audio(musictap);
     tapSound.play();
   };
-  const getUserData = async (id) => {
+  const getUserData = async (idX) => {
     setIsLoading(true);
     try {
-      const docRef = doc(db, "users", `${id}`);
+      const docRef = doc(db, "users", `${idX}`);
 
       const docSnap = await getDoc(docRef);
 
