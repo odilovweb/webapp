@@ -23,8 +23,6 @@ function Home(props) {
 
   const telegram = window.Telegram.WebApp;
 
-  telegram.ready();
-
   const getUserData = async (userIds) => {
     setIsLoading(true);
     try {
@@ -44,6 +42,7 @@ function Home(props) {
   };
 
   useEffect(() => {
+    telegram.ready();
     if (telegram.initDataUnsafe) {
       getUserData(telegram.user.id);
     }

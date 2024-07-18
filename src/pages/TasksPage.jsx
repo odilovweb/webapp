@@ -62,8 +62,10 @@ function TasksPage() {
     }
   };
   const telegram = window.Telegram.WebApp;
-  telegram.ready();
+
   useEffect(() => {
+    telegram.ready();
+
     if (telegram.initDataUnsafe) {
       getUserData(telegram.user.id);
     }
