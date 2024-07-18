@@ -13,22 +13,21 @@ import {
 import solana from ".././assets/onedrop.png";
 import onedrop from ".././assets/onedrop.png";
 import { db } from "../api/firebase-config";
-import { useSelector } from "react-redux";
-function Home(props) {
-  const { tickets, balance } = useSelector((state) => state.counter);
+import Loading from "./Loading";
 
+function Home(props) {
   const [userData, setUserData] = useState(null);
   const [tgId, setTGId] = useState(null);
   const [tgName, setTgName] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // const telegram = window.Telegram.WebApp;
-  // telegram.ready();
+  const telegram = window.Telegram.WebApp;
+  telegram.ready();
 
   const getUserData = async (userIds) => {
     setIsLoading(true);
     try {
-      const docRef = doc(db, "users", `${841886966}`);
+      const docRef = doc(db, "users", `${userIds}`);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
@@ -44,17 +43,16 @@ function Home(props) {
   };
 
   useEffect(() => {
-    // if (telegram.initDataUnsafe) {
-    getUserData(841886966);
-    // }
-
-    // console.log(userData);
+    if (telegram.initDataUnsafe) {
+      getUserData(telegram.user.id);
+    }
   }, []);
-
+  console.log(userData);
   const [isActive, setActive] = useState(false);
   const [isSending, setIsSending] = useState(false);
   return (
     <div className="">
+      {isLoading && <Loading />}
       <div className="">
         {isActive && (
           <div className="toast toast-top toast-center">
@@ -79,7 +77,9 @@ function Home(props) {
             </button>
           </div>
           <div className="flex-1 flex flex-col">
-            <p className="font-bold text-lg">{userData && balance} ONDP</p>
+            <p className="font-bold text-lg">
+              {userData && userData.balance} ONDP
+            </p>
           </div>
           <div className="flex-1 flex flex-col">
             <p className="font-bold text-lg">
@@ -132,7 +132,7 @@ function Home(props) {
         </div>
         <nav className="bg-slate-600 rounded-xl px-4 py-5 mt-14 ">
           <div className="flex container  items-center justify-between mb-3">
-            {userData && tickets > 0 ? (
+            {userData && userData.tickets > 0 ? (
               <Link
                 onClick={() => {}}
                 to="/mining"
@@ -146,7 +146,7 @@ function Home(props) {
               </Link>
             )}
             <h3 className="btn btn-sm btn-warning">
-              Your Tickets: {userData && tickets}
+              Your Tickets: {userData && userData.tickets}
             </h3>
           </div>
           <Link to="/friends" className="btn btn-sm btn-info">

@@ -1,10 +1,39 @@
-import React, { useState } from "react";
-import { friends } from "../redux/store";
+import React, { useEffect, useState } from "react";
+
 import { FaCopy, FaPaperPlane, FaPlane } from "react-icons/fa";
 import { FaPlaneArrival, FaPlaneUp } from "react-icons/fa6";
 import toncoin from "../assets/toncoin.svg";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../api/firebase-config";
 function Friends() {
-  const id = "841886966";
+  const telegram = window.Telegram.WebApp;
+  telegram.ready();
+  const [friends, setFriends] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const getUserData = async (id) => {
+    setIsLoading(true);
+    try {
+      const docRef = doc(db, "users", `${id}`);
+
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        setFriends(docSnap.data().topFriends);
+        console.log(docSnap.data());
+        setIsLoading(false);
+      } else {
+        console.log("Eror");
+      }
+    } catch (error) {
+      console.error("Error fetching user data: ", error);
+    }
+  };
+
+  useEffect(() => {
+    if (telegram.initDataUnsafe) {
+      getUserData(telegram.user.id);
+    }
+  }, []);
   const [isActive, setIsActive] = useState(false);
   return (
     <div className="h-full relative ">

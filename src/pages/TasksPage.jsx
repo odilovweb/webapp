@@ -1,14 +1,54 @@
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../api/firebase-config";
 import telegram from "../assets/telegram.svg";
-import { useDispatch } from "react-redux";
-import { plusBalance } from "../redux/store";
+import { FaCheck } from "react-icons/fa6";
+
 function TasksPage() {
-  const dispatch = useDispatch();
   const [tasksIds, setTasksIds] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [pendingTasks, setPendingTask] = useState(null);
+  const [dataUser, setDataUser] = useState([]);
+  const [doneTasks, setDoneTasks] = useState([]);
+
+  const getUserDatas = async (userIds) => {
+    setIsLoading(true);
+    try {
+      const docRef = doc(db, "users", `${userIds}`);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        setDataUser(docSnap.data());
+        setDoneTasks(docSnap.data().tasks);
+        console.log(docSnap.data());
+        setIsLoading(false);
+      } else {
+        console.log("Eror");
+      }
+    } catch (error) {
+      console.error("Error fetching user data: ", error);
+    }
+  };
+
+  const isPresent = (id) => {
+    return doneTasks.includes(id);
+  };
+
+  const updateUserData = async (data) => {
+    try {
+      const docRef = await updateDoc(doc(db, "users", `${841886966}`), data);
+      console.log("done");
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  };
+
   const getUserData = async (userId) => {
     setIsLoading(true);
     try {
@@ -21,11 +61,16 @@ function TasksPage() {
       console.error("Error fetching user data: ", error);
     }
   };
-
+  const telegram = window.Telegram.WebApp;
+  telegram.ready();
   useEffect(() => {
+    if (telegram.initDataUnsafe) {
+      getUserData(telegram.user.id);
+    }
+
     getUserData();
     console.log(tasksIds);
-  }, []);
+  }, [doneTasks]);
   return (
     <div>
       <div className="overflow-x-auto">
@@ -33,9 +78,9 @@ function TasksPage() {
           {/* head */}
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
+              <th>Type</th>
+              <th>Title</th>
+              <th>Amount Prize</th>
               <th></th>
             </tr>
           </thead>
@@ -43,7 +88,7 @@ function TasksPage() {
             {tasksIds.length > 0 &&
               tasksIds.map((task) => {
                 return (
-                  <tr>
+                  <tr key={task.telegram.id}>
                     <td>
                       <div className="flex items-center gap-3">
                         <div className="avatar">
@@ -63,26 +108,40 @@ function TasksPage() {
                       </span>
                     </td>
                     <td>{task.telegram.bonus}</td>
-                    <th
-                      onClick={() => {
-                        setPendingTask(task.telegram.id);
-                      }}
-                    >
-                      {pendingTasks == task.telegram.id ? (
-                        <button
-                          onClick={() => {
-                            dispatch(plusBalance(task.telegram.bonus));
-                          }}
-                          className="btn btn-warning"
-                        >
-                          Claim
-                        </button>
-                      ) : (
-                        <a className=" btn btn-info" href={task.telegram.link}>
-                          Join
-                        </a>
-                      )}
-                    </th>
+                    {isPresent(task.telegram.id) ? (
+                      <th>
+                        <span>
+                          <FaCheck />
+                        </span>
+                      </th>
+                    ) : (
+                      <th
+                        onClick={() => {
+                          setPendingTask(task.telegram.id);
+                        }}
+                      >
+                        {pendingTasks == task.telegram.id ? (
+                          <button
+                            onClick={() => {
+                              dataUser.balance += task.telegram.bonus;
+                              dataUser.tasks.push(task.telegram.id);
+                              doneTasks.push(task.telegram.id);
+                              updateUserData(dataUser);
+                            }}
+                            className="btn btn-warning"
+                          >
+                            Claim
+                          </button>
+                        ) : (
+                          <a
+                            className=" btn btn-info"
+                            href={task.telegram.link}
+                          >
+                            Join
+                          </a>
+                        )}
+                      </th>
+                    )}
                   </tr>
                 );
               })}
