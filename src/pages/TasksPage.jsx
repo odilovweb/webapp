@@ -10,13 +10,14 @@ import { db } from "../api/firebase-config";
 import telegramIcon from "../assets/telegram.svg";
 import { FaCheck } from "react-icons/fa6";
 import { telegram } from "../App";
+
 function TasksPage() {
   const [tasksIds, setTasksIds] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [pendingTasks, setPendingTask] = useState(null);
   const [dataUser, setDataUser] = useState([]);
   const [doneTasks, setDoneTasks] = useState([]);
-
+  const [text, setText] = useState("");
   const getUserDatas = async (userIds) => {
     setIsLoading(true);
     try {
@@ -66,6 +67,7 @@ function TasksPage() {
 
     if (telegram.initDataUnsafe) {
       getUserData(telegram.initDataUnsafe.user.id);
+      setText(telegram.initDataUnsafe.user);
     }
 
     getUserData();
@@ -78,7 +80,7 @@ function TasksPage() {
           {/* head */}
           <thead>
             <tr>
-              <th>Type</th>
+              <th>{text}</th>
               <th>Title</th>
               <th>Amount Prize</th>
               <th></th>

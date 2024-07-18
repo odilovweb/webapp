@@ -9,6 +9,7 @@ import { telegram } from "../App";
 function Friends() {
   const [friends, setFriends] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
   const getUserData = async (Idx) => {
     setIsLoading(true);
     try {
