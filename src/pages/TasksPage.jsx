@@ -61,12 +61,12 @@ function TasksPage() {
       console.error("Error fetching user data: ", error);
     }
   };
-  const telegram = window.Telegram.WebApp;
-  telegram.ready();
+  // const telegram = window.Telegram.WebApp;
+  // telegram.ready();
   useEffect(() => {
-    if (telegram.initDataUnsafe) {
-      getUserData(telegram.user.id);
-    }
+    // if (telegram.initDataUnsafe) {
+    getUserData("841886966");
+    // }
 
     getUserData();
     console.log(tasksIds);
