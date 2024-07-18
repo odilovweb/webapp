@@ -13,7 +13,6 @@ import {
 } from "react-icons/fa6";
 // import { id } from "../pages/Home";
 function Navbar() {
-  const { id } = useParams();
   return (
     <nav className="bg-cyan-500 rounded-xl py-2 px-4">
       <div className="flex container  items-center justify-between">
