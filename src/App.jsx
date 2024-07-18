@@ -26,7 +26,7 @@ import Tapping from "./pages/Tapping";
 import Friends from "./pages/Friends";
 import Tasks from "./pages/TasksPage";
 import TasksPage from "./pages/TasksPage";
-
+export const telegram = window.Telegram.WebApp;
 function App() {
   const [id, setId] = useState("841886966");
   const [url, urlPhoto] = useState("");

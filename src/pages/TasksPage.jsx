@@ -7,9 +7,9 @@ import {
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../api/firebase-config";
-import telegram from "../assets/telegram.svg";
+import telegramIcon from "../assets/telegram.svg";
 import { FaCheck } from "react-icons/fa6";
-
+import { telegram } from "../App";
 function TasksPage() {
   const [tasksIds, setTasksIds] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -61,8 +61,6 @@ function TasksPage() {
       console.error("Error fetching user data: ", error);
     }
   };
-  const telegram = window.Telegram.WebApp;
-
   useEffect(() => {
     telegram.ready();
 
@@ -96,7 +94,7 @@ function TasksPage() {
                         <div className="avatar">
                           <div className="mask mask-squircle h-12 w-12">
                             {task.telegram.type == "telegram" && (
-                              <img src={telegram} alt="Telegram Logo" />
+                              <img src={telegramIcon} alt="Telegram Logo" />
                             )}
                           </div>
                         </div>

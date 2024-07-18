@@ -14,14 +14,13 @@ import solana from ".././assets/onedrop.png";
 import onedrop from ".././assets/onedrop.png";
 import { db } from "../api/firebase-config";
 import Loading from "./Loading";
+import { telegram } from "../App";
 
 function Home(props) {
   const [userData, setUserData] = useState(null);
   const [tgId, setTGId] = useState(null);
   const [tgName, setTgName] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
-  const telegram = window.Telegram.WebApp;
 
   const getUserData = async (userIds) => {
     setIsLoading(true);

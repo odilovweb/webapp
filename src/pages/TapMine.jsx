@@ -5,6 +5,7 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../api/firebase-config";
 import solana from "../assets/onedrop.png";
 import musictap from "../../public/tapsound.mp3";
+import { telegram } from "../App";
 
 function TapMine() {
   const [isLoading, setIsLoading] = useState(true);
@@ -17,7 +18,6 @@ function TapMine() {
     const tapSound = new Audio(musictap);
     tapSound.play();
   };
-  const telegram = window.Telegram.WebApp;
   const getUserData = async (id) => {
     setIsLoading(true);
     try {

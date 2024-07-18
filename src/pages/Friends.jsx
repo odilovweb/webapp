@@ -5,9 +5,8 @@ import { FaPlaneArrival, FaPlaneUp } from "react-icons/fa6";
 import toncoin from "../assets/toncoin.svg";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../api/firebase-config";
+import { telegram } from "../App";
 function Friends() {
-  const telegram = window.Telegram.WebApp;
-
   const [friends, setFriends] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const getUserData = async (Idx) => {
