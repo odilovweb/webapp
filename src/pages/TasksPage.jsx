@@ -67,6 +67,7 @@ function TasksPage() {
 
     if (telegram.initDataUnsafe) {
       getUserDatas(telegram.initDataUnsafe.user.id);
+      console.log(telegram.initDataUnsafe.user);
     }
 
     getUserData();
