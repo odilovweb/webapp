@@ -78,6 +78,7 @@ function TasksPage() {
         <table className="table">
           {/* head */}
           <thead>
+            <a href="https://t.me/onedrop_ads">For Collobaration</a>
             <tr>
               <th>Type</th>
               <th>Title</th>
