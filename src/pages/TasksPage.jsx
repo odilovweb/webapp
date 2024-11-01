@@ -76,10 +76,10 @@ function TasksPage() {
   return (
     <div>
       <div className="overflow-x-auto">
-        <table className="table">
+        <table className="table ">
           {/* head */}
           <thead>
-            <a href="https://t.me/onedrop_ads">For Collobaration</a>
+            <a className="bt" href="https://t.me/onedrop_ads">For Collobaration</a>
             <tr>
               <th>Type</th>
               <th>Title</th>

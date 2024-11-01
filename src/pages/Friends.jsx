@@ -71,32 +71,20 @@ function Friends() {
                 <span>for each friend</span>
               </h3>
             </div>
-            <table className="table">
-              {/* head */}
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>Id</th>
-                  <th>Telegram Name</th>
-                  <th>Time</th>
-                </tr>
-              </thead>
-              <tbody>
-                {friends &&
-                  friends.map((user, i) => {
-                    return (
-                      <tr key={user.name}>
-                        <th>{(i += 1)}</th>
-                        <td>{user.name}</td>
-                        <td className="max-w-11 max-h-9">
-                          {user.name.toString().slice(0, 10)}...
-                        </td>
-                        <td>{user.time.toString().slice(0, 10)}</td>
-                      </tr>
-                    );
-                  })}
-              </tbody>
-            </table>
+            <div className="flex flex-col">
+              {friends &&
+                friends.map((user, i) => {
+                  return (
+                    <div className="bg-slate-600 rounded-xl" key={user.name}>
+                      <p>{(i += 1)}</p>
+                      <h3>{user.name}</h3>
+                      <h3 className="max-w-11 max-h-9">
+                        {user.name.toString().slice(0, 15)}...
+                      </h3>
+                    </div>
+                  );
+                })}
+            </div>
           </div>
         ) : (
           <div>
