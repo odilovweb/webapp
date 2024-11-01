@@ -73,7 +73,7 @@ function TapMine() {
     if (!active && userData) {
       const newUserData = {
         ...userData,
-        balance: userData.balance + point,
+        balance: userData.balance + Number(point),
         tickets: userData.tickets - 1,
       };
       if (telegram.initDataUnsafe) {

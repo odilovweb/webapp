@@ -75,7 +75,10 @@ function Friends() {
               {friends &&
                 friends.map((user, i) => {
                   return (
-                    <div className="bg-slate-600 rounded-xl" key={user.name}>
+                    <div
+                      className="bg-slate-600 rounded-xl flex justify-between"
+                      key={user.name}
+                    >
                       <p>{(i += 1)}</p>
                       <h3>{user.name}</h3>
                       <h3 className="max-w-11 max-h-9">
