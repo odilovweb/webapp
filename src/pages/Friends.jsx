@@ -76,11 +76,10 @@ function Friends() {
                 friends.map((user, i) => {
                   return (
                     <div
-                      className="bg-slate-600 rounded-xl flex justify-between"
+                      className="bg-slate-600 rounded-xl flex justify-between mb-2 align-middle items-center"
                       key={user.name}
                     >
-                      <p>{(i += 1)}</p>
-                      <h3>{user.name}</h3>
+                      <p className="inline-block btn btn-square">{(i += 1)}</p>
                       <h3 className="max-w-11 max-h-9">
                         {user.name.toString().slice(0, 15)}...
                       </h3>
