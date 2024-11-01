@@ -73,7 +73,7 @@ function TapMine() {
     if (!active && userData) {
       const newUserData = {
         ...userData,
-        balance: userData.balance + Number(point),
+        balance: Number(userData.balance) + Number(point),
         tickets: userData.tickets - 1,
       };
       if (telegram.initDataUnsafe) {
@@ -117,7 +117,7 @@ function TapMine() {
                 <a
                   href={`https://t.me/share/url?url=https://t.me/OnedropMine_bot?start=${userId}&text=
 🎮Hey friend! Got ${point} ONDP ! Join me and try to top my score!`}
-                  className="btn  btn-"
+                  className="btn  btn-success"
                 >
                   Share your Win
                 </a>
