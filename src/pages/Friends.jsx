@@ -48,7 +48,7 @@ function Friends() {
           </div>
         </div>
       )}
-      <div className="pt-8">
+      <div className="pt-8 ">
         {friends.length > 0 ? (
           <div className="overflow-x-auto">
             <div className="mb-6">
@@ -71,7 +71,7 @@ function Friends() {
                 <span>for each friend</span>
               </h3>
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col overflow-auto">
               {friends &&
                 friends.map((user, i) => {
                   return (

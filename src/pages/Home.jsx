@@ -16,6 +16,7 @@ import onedrop from ".././assets/onedrop.png";
 import { db } from "../api/firebase-config";
 import Loading from "./Loading";
 import { telegram } from "../App";
+import { FaTicket } from "react-icons/fa6";
 
 function Home(props) {
   const [userData, setUserData] = useState(null);
@@ -70,7 +71,7 @@ function Home(props) {
           </div>
         )}
 
-        <div className="navbar  bg-gray-600 text-cyan-500 font-medium px-5 rounded-xl mb-5">
+        <div className="navbar  bg-gray-600 text-cyan-500 font-medium px-5 rounded-xl mb-5 flex flex-col justify-center">
           <div className="flex-none">
             <button className="btn btn-square btn-ghost">
               <img className="rounded-full" src={onedrop} alt="Onedrop" />
@@ -86,6 +87,7 @@ function Home(props) {
               {userData && userData.tonBalance} TON
             </p>
           </div>
+
           <div className="flex-none">
             <TonConnectButton />
           </div>
@@ -129,12 +131,12 @@ function Home(props) {
                 Play for 1 Ticket
               </Link>
             ) : (
-              <Link to="/friends" className="btn btn-sm  btn-warning">
+              <Link to="/friends" className="btn btn-sm  btn-success">
                 Play for 1 Ticket
               </Link>
             )}
-            <h3 className="btn btn-sm btn-warning">
-              Your Tickets: {userData && userData.tickets}
+            <h3 className="btn-sm">
+              Your Tickets: {userData && userData.tickets} <FaTicket />
             </h3>
           </div>
           <Link to="/friends" className="btn btn-sm btn-info">
