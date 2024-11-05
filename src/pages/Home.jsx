@@ -72,22 +72,24 @@ function Home(props) {
         )}
 
         <div className="navbar  bg-gray-600 text-cyan-500 font-medium px-5 rounded-xl mb-5 flex flex-col justify-center">
-          <div className="flex-none">
-            <button className="btn btn-square btn-ghost">
-              <img className="rounded-full" src={onedrop} alt="Onedrop" />
-            </button>
+          <div>
+            {" "}
+            <div className="flex-none">
+              <button className="btn btn-square btn-ghost">
+                <img className="rounded-full" src={onedrop} alt="Onedrop" />
+              </button>
+            </div>
+            <div className="flex-1 flex flex-col">
+              <p className="font-bold text-lg">
+                {userData && userData.balance} ONDP
+              </p>
+            </div>
+            <div className="flex-1 flex flex-col">
+              <p className="font-bold text-lg">
+                {userData && userData.tonBalance} TON
+              </p>
+            </div>
           </div>
-          <div className="flex-1 flex flex-col">
-            <p className="font-bold text-lg">
-              {userData && userData.balance} ONDP
-            </p>
-          </div>
-          <div className="flex-1 flex flex-col">
-            <p className="font-bold text-lg">
-              {userData && userData.tonBalance} TON
-            </p>
-          </div>
-
           <div className="flex-none">
             <TonConnectButton />
           </div>
@@ -131,7 +133,10 @@ function Home(props) {
                 Play for 1 Ticket
               </Link>
             ) : (
-              <Link to="/friends" className="btn btn-sm  btn-success">
+              <Link
+                to="/friends"
+                className="btn btn-sm  btn-success bg-green-700"
+              >
                 Play for 1 Ticket
               </Link>
             )}

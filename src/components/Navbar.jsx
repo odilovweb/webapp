@@ -16,24 +16,15 @@ function Navbar() {
   return (
     <nav className="bg-cyan-500 rounded-xl py-2 px-4">
       <div className="flex container  items-center justify-between">
-        <Link
-          to={`/`}
-          className="text-xl  flex flex-col text-white hover:text-red-600"
-        >
+        <Link to={`/`} className="text-xl  flex flex-col text-white ">
           <FaGem className="mx-auto" />
           <span className="text-lg font-bold">Mining</span>
         </Link>
-        <Link
-          to="/friends"
-          className="text-xl  flex flex-col  text-white hover:text-red-600"
-        >
+        <Link to="/friends" className="text-xl  flex flex-col  text-white">
           <FaUser className="mx-auto" />
           <span className="text-lg font-bold">Friends</span>
         </Link>
-        <Link
-          to={"/tasks"}
-          className="text-xl  flex flex-col  text-white hover:text-red-600"
-        >
+        <Link to={"/tasks"} className="text-xl  flex flex-col  text-white ">
           <FaListCheck className="mx-auto" />
           <span className="text-lg font-bold">Tasks</span>
         </Link>

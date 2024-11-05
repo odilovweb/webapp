@@ -71,7 +71,7 @@ function Friends() {
                 <span>for each friend</span>
               </h3>
             </div>
-            <div className="flex flex-col overflow-auto">
+            <div className="flex flex-col overflow-x-auto">
               {friends &&
                 friends.map((user, i) => {
                   return (
