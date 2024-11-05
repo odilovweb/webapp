@@ -82,7 +82,7 @@ function Friends() {
                       <p className="  text-xl flex items-center content-center align-middle">
                         {(i += 1)}
                       </p>
-                      <h3 className="max-w-16 max-h-9">
+                      <h3 className="max-w-full">
                         {user.name.toString().slice(0, 15)}...
                       </h3>
                     </div>

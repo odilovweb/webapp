@@ -72,7 +72,7 @@ function Home(props) {
         )}
 
         <div className="navbar  bg-gray-600 text-cyan-500 font-medium px-5 rounded-xl mb-5 flex flex-col justify-center">
-          <div>
+          <div className="flex justify-around ">
             {" "}
             <div className="flex-none">
               <button className="btn btn-square btn-ghost">
@@ -128,7 +128,7 @@ function Home(props) {
               <Link
                 onClick={() => {}}
                 to="/mining"
-                className="btn btn-sm  btn-warning"
+                className="btn btn-sm  btn-success bg-green-700"
               >
                 Play for 1 Ticket
               </Link>
@@ -140,7 +140,7 @@ function Home(props) {
                 Play for 1 Ticket
               </Link>
             )}
-            <h3 className="btn-sm">
+            <h3 className="">
               Your Tickets: {userData && userData.tickets} <FaTicket />
             </h3>
           </div>
