@@ -9,6 +9,7 @@ import {
   setDoc,
   getDoc,
 } from "firebase/firestore";
+import { TonConnectButton } from "@tonconnect/ui-react";
 
 import solana from ".././assets/onedrop.png";
 import onedrop from ".././assets/onedrop.png";
@@ -86,19 +87,7 @@ function Home(props) {
             </p>
           </div>
           <div className="flex-none">
-            <button className="btn btn-square btn-ghost bg-white hover:bg-cyan-500 hover:text-white">
-              <button
-                className="font-bold"
-                onClick={() => {
-                  setActive(true);
-                  setTimeout(() => {
-                    setActive(false);
-                  }, 2000);
-                }}
-              >
-                Send
-              </button>
-            </button>
+            <TonConnectButton />
           </div>
         </div>
       </div>

@@ -12,6 +12,9 @@
   "dependencies": {
     "@google-cloud/firestore": "^7.9.0",
     "@reduxjs/toolkit": "^2.2.6",
+    "@ton/core": "^0.59.0",
+    "@tonconnect/sdk": "^3.0.5",
+    "@tonconnect/ui-react": "^2.0.9",
     "axios": "^1.7.2",
     "buffer": "^6.0.3",
     "firebase": "^10.12.3",
